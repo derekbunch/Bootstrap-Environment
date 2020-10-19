@@ -1,6 +1,8 @@
 # Install Homebrew if Mac
 if [[ "$OSTYPE" == "darwin"* ]]; then
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# thefuck
+brew install thefuck
 fi
 
 # Install OhMyZsh
@@ -14,9 +16,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 # Zsh Sync
 git clone https://github.com/vickyliin/zsh-sync.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-sync
-
-# thefuck
-brew install thefuck
 
 # Symlink .zshrc
 ln -s .zshrc ~/.zshrc
