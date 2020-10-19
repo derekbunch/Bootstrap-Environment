@@ -69,7 +69,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions colored-man-pages colorize github vagrant virtualenv pip python brew osx z zsh-syntax-highlighting zsh-sync)
+plugins=(git zsh-autosuggestions colored-man-pages colorize github vagrant virtualenv pip python brew osx z zsh-syntax-highlighting zsh-sync poetry)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -131,6 +131,10 @@ alias changepython3version='sudo update-alternatives --config python3'
 # alias pshell='pipenv shell'
 # alias pinstall='pipenv install'
 # alias plock='pipenv lock --clear'
+
+#-----regex shortcuts----------
+findcreates=awk '/CREATE TABLE/ && !a[$3]++{print $3}'
+findinserts=awk '/INSERT INTO/ && !a[$3]++{print $3}'
 
 #----Functions-------------
 function countfiles() {
