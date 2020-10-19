@@ -18,4 +18,4 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/vickyliin/zsh-sync.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-sync
 
 # Symlink .zshrc
-ln -s .zshrc ~/.zshrc
+ln -s .zshrc-work ~/.zshrc
