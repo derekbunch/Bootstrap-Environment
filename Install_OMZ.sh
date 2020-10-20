@@ -17,6 +17,16 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 # Zsh Sync
 git clone https://github.com/vickyliin/zsh-sync.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-sync
 
+# Powerlevel10k theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# vi-mode
+git clone --depth=1 https://github.com/woefe/vi-mode.zsh ~/.zsh/vi-mode.zsh
+
 # Symlink .zshrc
-mv ~/.zshrc ~/.zshrc.orig
+if test -f ~/.zshrc; then
+  mv ~/.zshrc ~/.zshrc.orig
+fi
+
 ln .zshrc-work ~/.zshrc
+chsh -s /bin/zsh
