@@ -58,7 +58,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 # fzf
 echo; echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --no-key-bindings --no-update-rc --completion
 
 # Symlink .zshrc
 if test -f ~/.zshrc
