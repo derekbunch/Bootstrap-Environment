@@ -16,7 +16,7 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]
     then
       echo "OS is Amazon Linux"
       echo "Installing chsh"
-      sudo yum install util-linux-user
+      sudo yum -y install util-linux-user
       echo "Installing zsh"
       sudo yum -y install zsh
     else
