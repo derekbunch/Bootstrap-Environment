@@ -73,11 +73,11 @@ select yn in "Yes" "No"; do
   case $yn in
       Yes )
         echo; echo "Using work config"
-        export CONFIG_VERSION='work-config'
+        touch work
         break;;
       No )
         echo; echo "Using personal config"
-        export CONFIG_VERSION='personal-config'
+        touch personal
         break;;
   esac
 done
