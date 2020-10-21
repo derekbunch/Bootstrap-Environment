@@ -67,7 +67,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions colored-man-pages colorize github vagrant virtualenv pip python brew osx z zsh-syntax-highlighting zsh-sync poetry virtualenvwrapper fzf fasd)
+plugins=(git zsh-autosuggestions colored-man-pages colorize github vagrant virtualenv pip python zsh-syntax-highlighting zsh-sync fzf fasd)
+# (osx poetry brew virtualenvwrapper z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,11 +106,11 @@ _comp_options+=(globdots)
 #ZSH_SYNC_REMOTE=
 #---------------------
 
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 ## Source all configs
 if [ -d $HOME/Bootstrap-Environment/$CONFIG_VERSION ]; then
-  for file in $HOME/Dropbox/dotfiles/$CONFIG_VERSION/*.rc; do
+  for file in $HOME/Bootstrap-Environment/$CONFIG_VERSION/*.rc; do
     source $file
   done
 fi
