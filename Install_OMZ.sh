@@ -25,7 +25,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 git clone --depth=1 https://github.com/woefe/vi-mode.zsh ~/.zsh/vi-mode.zsh
 
 # Symlink .zshrc
-if [ test -f ~/.zshrc ]
+if test -f ~/.zshrc
 then
   mv ~/.zshrc ~/.zshrc.orig
 fi
@@ -33,8 +33,8 @@ fi
 while true; do
     read -p "Is this a work device? (y/n): " config_version
     case $config_version in
-        [Yy]* ) export CONFIG_VERSION='work-config';;
-        * )  export CONFIG_VERSION='personal-config';;
+        [Yy]* ) export CONFIG_VERSION='work-config'; exit;;
+        * )  export CONFIG_VERSION='personal-config'; exit;;
     esac
 done
 
