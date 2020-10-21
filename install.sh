@@ -56,17 +56,15 @@ then
   mv ~/.zshrc ~/.zshrc.orig
 fi
 
-while true; do
-    read -p "Is this a work device? (y/n): " config_version
-    case $config_version in
-        [Yy]* )
-          echo; echo "Using work config"
-          export CONFIG_VERSION='work-config';;
-        * )
-          echo; echo "Using personal config"
-          export CONFIG_VERSION='personal-config';;
-    esac
-done
+read -p "Is this a work device? (y/n): " config_version
+case $config_version in
+    [Yy]* )
+      echo; echo "Using work config"
+      export CONFIG_VERSION='work-config';;
+    * )
+      echo; echo "Using personal config"
+      export CONFIG_VERSION='personal-config';;
+esac
 
 echo; echo "Linking zshrc"
 ln .zshrc ~/.zshrc
