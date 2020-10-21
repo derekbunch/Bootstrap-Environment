@@ -70,6 +70,17 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(git zsh-autosuggestions colored-man-pages colorize github vagrant virtualenv pip python zsh-syntax-highlighting zsh-sync fzf fasd)
 # (osx poetry brew virtualenvwrapper z)
 
+## Source all configs
+if [ -f $HOME/Bootstrap-Environment/personal ]; then
+  for file in $HOME/Bootstrap-Environment/personal-config/*.rc; do
+    source $file
+  done
+elif [ -f $HOME/Bootstrap-Environment/work ]; then
+  for file in $HOME/Bootstrap-Environment/work-config/*.rc; do
+    source $file
+  done
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -108,14 +119,3 @@ _comp_options+=(globdots)
 
 # eval $(thefuck --alias)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-## Source all configs
-if [ -f $HOME/Bootstrap-Environment/personal ]; then
-  for file in $HOME/Bootstrap-Environment/personal-config/*.rc; do
-    source $file
-  done
-elif [ -f $HOME/Bootstrap-Environment/work ]; then
-  for file in $HOME/Bootstrap-Environment/work-config/*.rc; do
-    source $file
-  done
-fi
