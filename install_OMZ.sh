@@ -15,6 +15,8 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]
   if (( $is_amazon_linux == 1 ))
     then
       echo "OS is Amazon Linux"
+      echo "Installing chsh"
+      sudo yum install util-linux-user
       echo "Installing zsh"
       sudo yum -y install zsh
     else
@@ -73,4 +75,4 @@ echo "Linking zshrc"
 ln .zshrc ~/.zshrc
 
 echo "Changing shell"
-chsh -s /bin/zsh
+chsh -s $(which zsh)
