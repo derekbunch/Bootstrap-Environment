@@ -110,11 +110,11 @@ _comp_options+=(globdots)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ## Source all configs
-if [ -d $HOME/Bootstrap-Environment/personal ]; then
+if [ -f $HOME/Bootstrap-Environment/personal ]; then
   for file in $HOME/Bootstrap-Environment/personal-config/*.rc; do
     source $file
   done
-elif [ -d $HOME/Bootstrap-Environment/work ]; then
+elif [ -f $HOME/Bootstrap-Environment/work ]; then
   for file in $HOME/Bootstrap-Environment/work-config/*.rc; do
     source $file
   done
