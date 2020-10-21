@@ -30,8 +30,8 @@ then
   mv ~/.zshrc ~/.zshrc.orig
 fi
 
-readonly config_version=${1:?"Is this a work device?"}
-if [ $config_version == 'Personal' ]
+readonly config_version=${1:?"Is this a work device? (y/n): "}
+if [ $config_version == 'y' ]
 then
   export CONFIG_VERSION='work-config'
 else
