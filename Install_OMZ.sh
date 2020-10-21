@@ -1,8 +1,9 @@
 # Install Homebrew if Mac
-if [[ "$OSTYPE" == "darwin"* ]]; then
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-# thefuck
-brew install thefuck
+if [[ "$OSTYPE" == "darwin"* ]]
+then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  # thefuck
+  brew install thefuck
 fi
 
 # Install OhMyZsh
@@ -24,9 +25,18 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 git clone --depth=1 https://github.com/woefe/vi-mode.zsh ~/.zsh/vi-mode.zsh
 
 # Symlink .zshrc
-if test -f ~/.zshrc; then
+if [ test -f ~/.zshrc ]
+then
   mv ~/.zshrc ~/.zshrc.orig
 fi
 
-ln .zshrc-work ~/.zshrc
+readonly config_version=${1:?"Is this a work device?"}
+if [ $config_version == 'Personal' ]
+then
+  export CONFIG_VERSION='work-config'
+else
+  export CONFIG_VERSION='personal-config'
+fi
+
+ln .zshrc ~/.zshrc
 chsh -s /bin/zsh

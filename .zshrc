@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/derekbunch/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -68,7 +68,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions colored-man-pages colorize github vagrant virtualenv pip python brew osx z zsh-syntax-highlighting zsh-sync poetry)
+plugins=(git zsh-autosuggestions colored-man-pages colorize github vagrant virtualenv pip python brew osx z zsh-syntax-highlighting zsh-sync poetry virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,56 +106,11 @@ _comp_options+=(globdots)
 #ZSH_SYNC_REMOTE=
 #---------------------
 
-path+=/usr/local/bin/code-insiders
-
 eval $(thefuck --alias)
-alias refreshzsh='source ~/.zshrc'
-alias openzshrc='code-insiders ~/.zshrc'
-alias grep='grep --color'
-alias t='tail -f'
-alias vsc='code-insiders'
-alias lsa='ls -a'
-alias sshfingerprint='ssh-keygen -l -E md5 -f '
 
-#----Python shortcuts-----------
-path+=/usr/local/lib/python3.8/site-packages:/Users/derekbunch/Library/Python/3.8/lib/python/site-packages
-alias py='python3'
-alias pip='py -m pip'
-alias changepython3version='sudo update-alternatives --config python3'
-
-#----VirtualEnv shortcuts-----------
-export WORKON_HOME=~/Envs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3.8
-source /usr/local/bin/virtualenvwrapper.sh
-alias mkvenv='mkvirtualenv'
-alias rmvenv='rmvirtualenv'
-alias lsvenv='lsvirtualenv'
-alias workondata='workon SpyCloud'
-
-#----Poetry shortcuts-----------
-# source $HOME/.poetry/env
-
-#----Django shortcuts-----------
-# alias runserver='python manage.py runserver'
-# alias makem='python manage.py makemigrations && python manage.py migrate'
-
-#-----pipenv shortcuts----------
-# alias pshell='pipenv shell'
-# alias pinstall='pipenv install'
-# alias plock='pipenv lock --clear'
-
-#-----regex shortcuts----------
-findcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
-findinserts='awk "/INSERT INTO/ && !a[$3]++{print $3}"'
-
-#----Functions-------------
-function countfiles() {
-  readonly filetype=${1:?"Please provide a filetype"}
-  find . -type f -name \*.$filetype | wc -l
-}
-
-function lsgrep() {
-  ls | grep $1
-}
-
-export PATH
+## Source all configs
+if [ -d $HOME/Bootstrap-Environment/$CONFIG_VERSION ]; then
+  for file in $HOME/Dropbox/dotfiles/$CONFIG_VERSION/*.rc; do
+    source $file
+  done
+fi

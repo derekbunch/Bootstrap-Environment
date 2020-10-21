@@ -1,0 +1,9 @@
+#----Functions-------------
+function countfiles() {
+  readonly filetype=${1:?"Please provide a filetype"}
+  find . -type f -name \*.$filetype | wc -l
+}
+
+function lsgrep() {
+  ls | grep $1
+}

@@ -1,0 +1,36 @@
+alias refreshzsh='source ~/.zshrc'
+alias openzshrc='code-insiders ~/.zshrc'
+alias grep='grep --color'
+alias t='tail -f'
+alias vsc='code-insiders'
+alias lsa='ls -a'
+alias .='pwd'
+alias sshfingerprint='ssh-keygen -l -E md5 -f '
+
+#----Python shortcuts-----------
+alias py='python3'
+alias pip='py -m pip'
+alias changepython3version='sudo update-alternatives --config python3'
+
+#----VirtualEnv shortcuts-----------
+source /usr/local/bin/virtualenvwrapper.sh
+alias mkvenv='mkvirtualenv'
+alias rmvenv='rmvirtualenv'
+alias lsvenv='lsvirtualenv'
+alias workondata='workon SpyCloud'
+
+#----Poetry shortcuts-----------
+# source $HOME/.poetry/env
+
+#----Django shortcuts-----------
+# alias runserver='python manage.py runserver'
+# alias makem='python manage.py makemigrations && python manage.py migrate'
+
+#-----pipenv shortcuts----------
+# alias pshell='pipenv shell'
+# alias pinstall='pipenv install'
+# alias plock='pipenv lock --clear'
+
+#-----regex shortcuts----------
+alias findcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
+alias findinserts='awk "/INSERT INTO/ && !a[$3]++{print $3}"'
