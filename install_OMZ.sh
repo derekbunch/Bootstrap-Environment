@@ -62,12 +62,10 @@ while true; do
     case $config_version in
         [Yy]* )
           echo; echo "Using work config"
-          export CONFIG_VERSION='work-config'
-          exit;;
+          export CONFIG_VERSION='work-config';;
         * )
           echo; echo "Using personal config"
-          export CONFIG_VERSION='personal-config'
-          exit;;
+          export CONFIG_VERSION='personal-config';;
     esac
 done
 
