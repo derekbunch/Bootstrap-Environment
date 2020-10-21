@@ -1,5 +1,5 @@
-echo; echo "Changing shell"
-chsh -s $(which bash)
+# echo; echo "Changing shell"
+# chsh -s $(which bash)
 
 echo; echo "Checking OS version"
 if [[ "$OSTYPE" == "darwin"* ]]
