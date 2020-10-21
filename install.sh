@@ -1,4 +1,3 @@
-# Install Homebrew if Mac
 echo; echo 'Checking OS version'
 if [[ "$OSTYPE" == "darwin"* ]]
 then
@@ -48,7 +47,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 # vi-mode
 echo; echo "Installing vi-mode"
-git clone --depth=1 https://github.com/woefe/vi-mode.zsh ~/.zsh/vi-mode.zsh
+git clone --depth=1 https://github.com/woefe/vi-mode.zsh ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/vi-mode.zsh
 
 # Symlink .zshrc
 if test -f ~/.zshrc
