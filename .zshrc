@@ -107,6 +107,7 @@ _comp_options+=(globdots)
 #---------------------
 
 # eval $(thefuck --alias)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ## Source all configs
 if [ -d $HOME/Bootstrap-Environment/$CONFIG_VERSION ]; then
