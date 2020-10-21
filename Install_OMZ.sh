@@ -7,7 +7,7 @@ then
 fi
 
 # Install OhMyZsh
-$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Zsh Syntax Highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -30,13 +30,13 @@ then
   mv ~/.zshrc ~/.zshrc.orig
 fi
 
-readonly config_version=${1:?"Is this a work device? (y/n): "}
-if [ $config_version == 'y' ]
-then
-  export CONFIG_VERSION='work-config'
-else
-  export CONFIG_VERSION='personal-config'
-fi
+while true; do
+    read -p "Is this a work device? (y/n): " config_version
+    case $config_version in
+        [Yy]* ) export CONFIG_VERSION='work-config';;
+        * )  export CONFIG_VERSION='personal-config';;
+    esac
+done
 
 ln .zshrc ~/.zshrc
 chsh -s /bin/zsh
