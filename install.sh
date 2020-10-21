@@ -6,6 +6,8 @@ then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   echo; echo "Installing zsh"
   brew install zsh
+  # echo; echo "Changing shell"
+  # chsh -s $(which zsh)
   echo; echo "Installing thefuck"
   brew install thefuck
 elif [[ "$OSTYPE" == "linux-gnu"* ]]
@@ -18,10 +20,14 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]
       sudo yum -y install util-linux-user
       echo; echo "Installing zsh"
       sudo yum -y install zsh
+      # echo; echo "Changing shell"
+      # chsh -s $(which zsh)
     else
       echo; echo "OS is Linux"
       echo; echo "Installing zsh"
       sudo apt-get install zsh -y
+      # echo; echo "Changing shell"
+      # chsh -s $(which zsh)
   fi
 fi
 
@@ -57,7 +63,7 @@ then
 fi
 
 # read -p "Is this a work device? (y/n): " config_version
-echo "Is this a work device?"
+echo; echo "Is this a work device?"
 select yn in "Yes" "No"; do
   case $yn in
       Yes )
@@ -73,6 +79,3 @@ done
 
 echo; echo "Linking zshrc"
 ln .zshrc ~/.zshrc
-
-echo; echo "Changing shell"
-chsh -s $(which zsh)
