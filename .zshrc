@@ -67,7 +67,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions colored-man-pages colorize github vagrant virtualenv pip python zsh-syntax-highlighting zsh-sync fzf fasd)
+plugins=(git colored-man-pages colorize github vagrant virtualenv pip python aws zsh-autosuggestions zsh-syntax-highlighting zsh-sync fzf fasd)
 # (osx poetry brew virtualenvwrapper z)
 
 ## Source all configs
