@@ -1,6 +1,6 @@
 ### Options ###
 
-ZSH_THEME="gozilla"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 #unalias run-help
 # autoload run-help

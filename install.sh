@@ -84,3 +84,4 @@ done
 
 echo; echo "Linking zshrc"
 ln .zshrc ~/.zshrc
+ln .p10k.zsh ~/.p10k.zsh

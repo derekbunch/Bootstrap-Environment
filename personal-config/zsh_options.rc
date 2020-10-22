@@ -1,8 +1,11 @@
 ### Options ###
 
-ZSH_THEME="gozilla"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 #Themes I like - https://zshthem.es/all/
+
+## Configurable
+# powerlevel10k/powerlevel10k
 
 ## Simple themes
 # gozilla
