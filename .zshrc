@@ -125,6 +125,7 @@ _comp_options+=(globdots)
 #---------------------
 
 # eval $(thefuck --alias)
+eval "$(fasd --init auto)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

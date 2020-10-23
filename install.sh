@@ -10,6 +10,8 @@ then
   # chsh -s $(which zsh)
   echo; echo "Installing thefuck"
   brew install thefuck
+  echo; echo "Installing fasd"
+  brew install fasd
 elif [[ "$OSTYPE" == "linux-gnu"* ]]
   then
   is_amazon_linux=$(hostnamectl | grep 'Amazon' | wc -l)
@@ -59,6 +61,10 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 echo; echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --no-key-bindings --no-update-rc --completion
+
+echo; echo "Installing fasd"
+git clone https://github.com/clvv/fasd.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fasd
+(cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fasd/ && make install)
 
 # Symlink .zshrc
 if test -f ~/.zshrc
