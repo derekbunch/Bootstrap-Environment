@@ -7,3 +7,11 @@ function countfiles() {
 function lsgrep() {
   ls | grep $1
 }
+
+function awsls() {
+  aws s3 ls s3://vuka-ingest-manager/$1
+}
+
+function awscp() {
+  aws s3 cp $1 s3://vuka-ingest-manager/$2
+}
