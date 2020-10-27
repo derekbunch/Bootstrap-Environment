@@ -15,3 +15,7 @@ function awsls() {
 function awscp() {
   aws s3 cp $1 s3://vuka-ingest-manager/$2
 }
+
+function awssync() {
+  aws s3 sync s3://vuka-ingest-manager/$1 $2
+}
