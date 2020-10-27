@@ -34,3 +34,5 @@ rm -rf $HOME/.oh-my-zsh
 
 echo; echo "Removing zshrc"
 rm $HOME/.zshrc
+echo; echo "Removing zshrc"
+rm $HOME/.p10k.zsh
