@@ -62,9 +62,12 @@ echo; echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --no-key-bindings --no-update-rc --completion
 
-echo; echo "Installing fasd"
-git clone https://github.com/clvv/fasd.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fasd
-(cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fasd/ && make install)
+if (( $is_amazon_linux != 1 ))
+then
+  echo; echo "Installing fasd"
+  git clone https://github.com/clvv/fasd.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fasd
+  (cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fasd/ && make install)
+fi
 
 # Symlink .zshrc
 if test -f ~/.zshrc
@@ -90,4 +93,5 @@ done
 
 echo; echo "Linking zshrc"
 ln .zshrc ~/.zshrc
+echo; echo "Linking p10k config"
 ln .p10k.zsh ~/.p10k.zsh
