@@ -1,4 +1,3 @@
-
 alias refreshzsh='source ~/.zshrc'
 alias openzshrc='code-insiders ~/.zshrc'
 alias grep='grep --color'
@@ -7,6 +6,7 @@ alias vsc='code-insiders'
 alias lsa='ls -a'
 alias .='pwd'
 alias sshfingerprint='ssh-keygen -l -E md5 -f '
+alias bootstrapenv="echo 'git clone https://github.com/derekbunch/Bootstrap-Environment.git' | pbcopy"
 
 #----Python shortcuts-----------
 alias py='python3'
