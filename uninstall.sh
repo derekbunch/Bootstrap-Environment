@@ -34,5 +34,5 @@ rm -rf $HOME/.oh-my-zsh
 
 echo; echo "Removing zshrc"
 rm $HOME/.zshrc
-echo; echo "Removing zshrc"
+echo; echo "Removing p10k config"
 rm $HOME/.p10k.zsh
