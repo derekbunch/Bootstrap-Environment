@@ -6,7 +6,7 @@ alias vsc='code-insiders'
 alias lsa='ls -a'
 alias .='pwd'
 alias sshfingerprint='ssh-keygen -l -E md5 -f '
-alias bootstrapenv="echo 'git clone https://github.com/derekbunch/Bootstrap-Environment.git ~/bootstrap_environment' | pbcopy"
+alias bootstrapenv="echo 'git clone https://github.com/derekbunch/Bootstrap-Environment.git ~/bootstrap_environment && cd bootstrap_environment/ && chmod +x install.sh && ./install.sh' | pbcopy"
 
 #----Python shortcuts-----------
 alias py='python3'
