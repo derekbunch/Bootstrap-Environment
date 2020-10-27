@@ -14,7 +14,7 @@ alias pip='py -m pip'
 alias changepython3version='sudo update-alternatives --config python3'
 
 #----VirtualEnv shortcuts-----------
-source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/local/bin/virtualenvwrapper.sh
 alias mkvenv='mkvirtualenv'
 alias rmvenv='rmvirtualenv'
 alias lsvenv='lsvirtualenv'
@@ -35,3 +35,6 @@ alias workondata='workon SpyCloud'
 #-----regex shortcuts----------
 alias findcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
 alias findinserts='awk "/INSERT INTO/ && !a[$3]++{print $3}"'
+
+#-----SpyCloud shortcuts----------
+input='cd /mnt/data/input'
