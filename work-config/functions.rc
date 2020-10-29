@@ -36,11 +36,11 @@ function stripinsert() {
           Yes )
             sed -i 's/),(/\n/g' ${table_name_file};
             echo "Written in place";
-            exit;;
+            return;;
           No )
             sed 's/),(/\n/g' ${table_name_file} > "${table_name}2.txt";
             echo "Written to ${table_name}2.txt";
-            exit;;
+            return;;
       esac
   done
 }
