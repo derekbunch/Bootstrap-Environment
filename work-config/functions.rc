@@ -21,39 +21,41 @@ function awssync() {
 }
 
 function stripsql() {
-  if [ -z $1 ]
-    then
-      ls *.sql
-      vared -p "Filename? " -c filename
-    else
-      filename=$1
-  fi
+  while (true)
+  do
+    if [ -z $1 ]
+      then
+        ls *.sql
+        vared -p "Filename? " -c filename
+      else
+        filename=$1
+    fi
 
-  grep -Pazio 'CREATE TABLE `.*`' $filename
-  vared -p "Which table would you like to strip out? " -c table_name
-  table_name_file=${table_name}'.txt'
+    grep -Pazio 'CREATE TABLE `.*`' $filename
+    vared -p "Which table would you like to strip out? " -c table_name
+    table_name_file=${table_name}'.txt'
 
-  echo "Stripping header"
-  grep -Pazio "CREATE TABLE \`${table_name}\` \((?:[?\n]\s+?.*)*\)" $filename > ${table_name_file}
-  sed "N;s/CREATE TABLE \`${table_name}\` (\n//g" ${table_name_file} | grep -o "\`.*\`" | sed  's/`//g' | sed ':a;N;$!ba;s/\n/,/g' > ${table_name_file}
+    echo "Stripping header"
+    grep -Pazio "CREATE TABLE \`${table_name}\` \((?:[?\n]\s+?.*)*\)" $filename > ${table_name_file}
+    sed "N;s/CREATE TABLE \`${table_name}\` (\n//g" ${table_name_file} | grep -o "\`.*\`" | sed  's/`//g' | sed ':a;N;$!ba;s/\n/,/g' > ${table_name_file}
 
-  echo "Stripping values"
-  grep -Pazio "INSERT INTO \`${table_name}\` VALUES (.*?)\;" ${filename} >> ${table_name_file}
-  sed -i "s/INSERT INTO \`${table_name}\` VALUES (//g" ${table_name_file}
+    echo "Stripping values"
+    grep -Pazio "INSERT INTO \`${table_name}\` VALUES (.*?)\;" ${filename} >> ${table_name_file}
+    sed -i "s/INSERT INTO \`${table_name}\` VALUES (//g" ${table_name_file}
 
-  wc -l ${table_name_file}
-  sed 's/),(/\n/g' ${table_name_file} | wc -l
-  echo "Would you like to write this to the original file?"
-  select yn in "Yes" "No"; do
-      case $yn in
-          Yes )
-            sed -i 's/),(/\n/g' ${table_name_file};
-            echo "Written in place";
-            return;;
-          No )
-            sed 's/),(/\n/g' ${table_name_file} > "${table_name}2.txt";
-            echo "Written to ${table_name}2.txt";
-            return;;
-      esac
+    wc -l ${table_name_file}
+    sed 's/),(/\n/g' ${table_name_file} | wc -l
+    sed -i 's/),(/\n/g' ${table_name_file};
+    echo "Done"
+
+    echo "Would you like to another table?"
+    select yn in "Yes" "No"; do
+        case $yn in
+            Yes )
+              break;;
+            No )
+              return;;
+        esac
+    done
   done
 }
