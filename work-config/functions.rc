@@ -20,14 +20,27 @@ function awssync() {
   aws s3 sync s3://vuka-ingest-manager/$1 $2
 }
 
-function stripinsert() {
-  ls *.sql
-  vared -p "Filename? " -c filename
-  grep -Ei 'CREATE TABLE `.*`' $filename
+function stripsql() {
+  if [ -z $1 ]
+    then
+      ls *.sql
+      vared -p "Filename? " -c filename
+    else
+      filename=$1
+  fi
+
+  grep -Pazio 'CREATE TABLE `.*`' $filename
   vared -p "Which table would you like to strip out? " -c table_name
   table_name_file=${table_name}'.txt'
-  grep -Ei "INSERT INTO \`${table_name}\` VALUES (.*?)\;" ${filename} > ${table_name_file}
+
+  echo "Stripping header"
+  grep -Pazio "CREATE TABLE \`${table_name}\` \((?:[?\n]\s+?.*)*\)" $filename > ${table_name_file}
+  sed "N;s/CREATE TABLE \`${table_name}\` (\n//g" ${table_name_file} | grep -o "\`.*\`" | sed  's/`//g' | sed ':a;N;$!ba;s/\n/,/g' > ${table_name_file}
+
+  echo "Stripping values"
+  grep -Pazio "INSERT INTO \`${table_name}\` VALUES (.*?)\;" ${filename} >> ${table_name_file}
   sed -i "s/INSERT INTO \`${table_name}\` VALUES (//g" ${table_name_file}
+
   wc -l ${table_name_file}
   sed 's/),(/\n/g' ${table_name_file} | wc -l
   echo "Would you like to write this to the original file?"
