@@ -7,6 +7,7 @@ alias lsa='ls -a'
 alias .='pwd'
 alias sshfingerprint='ssh-keygen -l -E md5 -f '
 alias bootstrapenv="echo 'git clone https://github.com/derekbunch/Bootstrap-Environment.git ~/Bootstrap-Environment && cd Bootstrap-Environment/ && chmod +x install.sh && ./install.sh' | pbcopy"
+alias wcl='wc -l ./* | sort -nr'
 
 #----Python shortcuts-----------
 alias py='python3'
@@ -33,8 +34,10 @@ alias workondata='workon SpyCloud'
 # alias plock='pipenv lock --clear'
 
 #-----regex shortcuts----------
-alias findcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
-alias findinserts='awk "/INSERT INTO/ && !a[$3]++{print $3}"'
+alias awkcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
+alias awkinserts='awk "/INSERT INTO/ && !a[$3]++{print $3}"'
+alias grepcreate="grep -Ei 'CREATE TABLE `.*`'"
+alias grepinsert="grep -Ei 'INSERT INTO `.*`'"
 
 #-----SpyCloud shortcuts----------
 input='cd /mnt/data/input'

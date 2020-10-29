@@ -19,3 +19,28 @@ function awscp() {
 function awssync() {
   aws s3 sync s3://vuka-ingest-manager/$1 $2
 }
+
+function stripinsert() {
+  ls *.sql
+  vared -p "Filename? " -c filename
+  grep -Ei 'CREATE TABLE `.*`' $filename
+  vared -p "Which table would you like to strip out? " -c table_name
+  table_name_file=${table_name}'.txt'
+  grep -Ei "INSERT INTO \`${table_name}\` VALUES (.*?)\;" ${filename} > ${table_name_file}
+  sed -i "s/INSERT INTO \`${table_name}\` VALUES (//g" ${table_name_file}
+  wc -l ${table_name_file}
+  sed 's/),(/\n/g' ${table_name_file} | wc -l
+  echo "Would you like to write this to the original file?"
+  select yn in "Yes" "No"; do
+      case $yn in
+          Yes )
+            sed -i 's/),(/\n/g' ${table_name_file};
+            echo "Written in place";
+            exit;;
+          No )
+            sed 's/),(/\n/g' ${table_name_file} > "${table_name}2.txt";
+            echo "Written to ${table_name}2.txt";
+            exit;;
+      esac
+  done
+}
