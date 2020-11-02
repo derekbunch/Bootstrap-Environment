@@ -33,7 +33,7 @@ function stripsql() {
     # grep -Pazio 'CREATE TABLE `.*`' $filename
     # vared -p "Which table would you like to strip out? " -c table_name
     echo "Which table would you like to strip out? "
-    select table_name in `grep -Pazio 'CREATE TABLE \`.*\`' speedtrader.sql | grep -Pazio '\`.*\`' | sed 's/\`//g'`
+    select table_name in `grep -Pazio 'CREATE TABLE \`.*\`' ${filename} | grep -Pazio '\`.*\`' | sed 's/\`//g'`
     do
       table_name_file=${table_name}'.txt'
 
