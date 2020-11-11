@@ -40,4 +40,4 @@ alias grepcreate="grep -Ei 'CREATE TABLE \`.*\`'"
 alias grepinsert="grep -Ei 'INSERT INTO \`.*\`'"
 
 #-----SpyCloud shortcuts----------
-input='cd /mnt/data/input'
+alias input='cd /mnt/data/input'
