@@ -83,6 +83,7 @@ select yn in "Yes" "No"; do
       Yes )
         echo; echo "Using work config"
         touch work
+        aws s3 sync s3://vuka-ingest-manager/code/derek/ /mnt/data/input/scripts
         break;;
       No )
         echo; echo "Using personal config"
