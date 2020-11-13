@@ -38,6 +38,3 @@ alias awkcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
 alias awkinserts='awk "/INSERT INTO/ && !a[$3]++{print $3}"'
 alias grepcreate="grep -Ei 'CREATE TABLE \`.*\`'"
 alias grepinsert="grep -Ei 'INSERT INTO \`.*\`'"
-
-#-----SpyCloud shortcuts----------
-alias input='cd /mnt/data/input'
