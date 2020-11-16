@@ -22,12 +22,16 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]
       sudo yum -y install util-linux-user
       echo; echo "Installing zsh"
       sudo yum -y install zsh
+      echo; echo "Installing tmux"
+      sudo yum -y install tmux
       # echo; echo "Changing shell"
       # chsh -s $(which zsh)
     else
       echo; echo "OS is Linux"
       echo; echo "Installing zsh"
       sudo apt-get install zsh -y
+      echo; echo "Installing tmux"
+      sudo apt-get install tmux -y
       # echo; echo "Changing shell"
       # chsh -s $(which zsh)
   fi
@@ -94,5 +98,5 @@ done
 
 echo; echo "Linking zshrc"
 ln .zshrc ~/.zshrc
-echo; echo "Linking p10k config"
-ln .p10k.zsh ~/.p10k.zsh
+# echo; echo "Linking p10k config"
+# ln .p10k.zsh ~/.p10k.zsh
