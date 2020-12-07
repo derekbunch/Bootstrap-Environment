@@ -124,6 +124,8 @@ fpath+=~/.zfunc
 compinit
 _comp_options+=(globdots)
 
+eval "$(ssh-agent -s)"
+
 #--Zsh Sync Config----
 #ZSH_SYNC_REMOTE=
 #---------------------
