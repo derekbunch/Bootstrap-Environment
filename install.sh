@@ -6,8 +6,10 @@ then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   echo; echo "Installing zsh"
   brew install zsh
-  # echo; echo "Changing shell"
-  # chsh -s $(which zsh)
+  echo; echo "Changing shell"
+  chsh -s $(which zsh)
+  echo; echo "Installing exa"
+  brew install exa
   echo; echo "Installing thefuck"
   brew install thefuck
   echo; echo "Installing fasd"
@@ -32,8 +34,10 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]
       sudo apt-get install zsh -y
       echo; echo "Installing tmux"
       sudo apt-get install tmux -y
-      # echo; echo "Changing shell"
-      # chsh -s $(which zsh)
+      echo; echo "Changing shell"
+      chsh -s $(which zsh)
+      echo; echo "Installing exa"
+      sudo apt install exa -y
   fi
 fi
 
@@ -60,6 +64,9 @@ git clone --depth=1 https://github.com/woefe/vi-mode.zsh ${ZSH_CUSTOM:-~/.oh-my-
 # Powerlevel10k theme
 echo; echo "Installing Powerlevel10k"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+echo; echo "Installing Z"
+curl -sSL https://raw.githubusercontent.com/rupa/z/master/z.sh > ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/z.sh
 
 # fzf
 echo; echo "Installing fzf"
