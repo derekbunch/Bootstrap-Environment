@@ -1,8 +1,8 @@
 #----Functions-------------
 function openrc() {
   readonly filename=${1:?"Which rc file would you like to open?"}
-  rc_file = ${filename}'.rc'
-  code-insiders ~/Bootstrap-Environment/work-config/${rc_file}
+  rc_file=${filename}'.rc'
+  code-insiders ~/Bootstrap-Environment/personal-config/${rc_file}
 }
 
 function countfiles() {
