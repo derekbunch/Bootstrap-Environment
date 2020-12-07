@@ -4,9 +4,11 @@ alias grep='grep --color'
 alias t='tail -f'
 alias vsc='code-insiders'
 alias lsa='ls -a'
-alias .='pwd'
 alias sshfingerprint='ssh-keygen -l -E md5 -f '
 alias bootstrapenv="echo 'git clone https://github.com/derekbunch/Bootstrap-Environment.git ~/Bootstrap-Environment && cd Bootstrap-Environment/ && chmod +x install.sh && ./install.sh' | pbcopy"
+alias c="clear"
+alias q="exit"
+alias quit="exit"
 
 #----Python shortcuts-----------
 alias py='python3'
@@ -21,6 +23,20 @@ alias changepython3version='sudo update-alternatives --config python3'
 # alias pshell='pipenv shell'
 # alias pinstall='pipenv install'
 # alias plock='pipenv lock --clear'
+
+#----Poetry shortcuts-----------
+# source $HOME/.poetry/env
+alias pshell='poetry shell'
+alias pupdate='poetry update'
+alias pinstall='poetry install'
+alias penv3.9='poetry env use /usr/local/opt/python@3.9/bin/python3.9 && pinstall && pshell'
+alias penv3.8='poetry env use /usr/local/opt/python@3.8/bin/python3.8 && pinstall && pshell'
+alias padd='poetry add'
+alias prem='poetry remove'
+alias prun='poetry run'
+alias pinfo='poetry env info'
+alias pls='poetry env list'
+alias prmvenv='rm -rf .venv' #'poetry env remove'
 
 #-----regex shortcuts----------
 alias findcreates=awk '/CREATE TABLE/ && !a[$3]++{print $3}'
