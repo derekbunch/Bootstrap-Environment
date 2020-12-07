@@ -4,10 +4,21 @@ alias grep='grep --color'
 alias t='tail -f'
 alias vsc='code-insiders'
 alias lsa='ls -a'
-alias .='pwd'
 alias sshfingerprint='ssh-keygen -l -E md5 -f '
 alias bootstrapenv="echo 'git clone https://github.com/derekbunch/Bootstrap-Environment.git ~/Bootstrap-Environment && cd Bootstrap-Environment/ && chmod +x install.sh && ./install.sh' | pbcopy"
 alias wcl='wc -l ./* | sort -nr'
+alias c="clear"
+alias q="exit"
+alias quit="exit"
+
+#----Exa shortcuts--------------
+# alias ls="exa --group-directories-first"
+# alias l="ls -1"
+# alias la="l -a"
+# alias ll="ls -lh --git"
+# alias llg="ll --grid"
+# alias lt="ls -T"
+# alias llt="ll -T"
 
 #----Python shortcuts-----------
 alias py='python3'
@@ -23,6 +34,17 @@ alias workondata='workon SpyCloud'
 
 #----Poetry shortcuts-----------
 # source $HOME/.poetry/env
+alias pshell='poetry shell'
+alias pupdate='poetry update'
+alias pinstall='poetry install'
+alias penv3.9='poetry env use /usr/local/opt/python@3.9/bin/python3.9 && pinstall && pshell'
+alias penv3.8='poetry env use /usr/local/opt/python@3.8/bin/python3.8 && pinstall && pshell'
+alias padd='poetry add'
+alias prem='poetry remove'
+alias prun='poetry run'
+alias pinfo='poetry env info'
+alias pls='poetry env list'
+alias prmvenv='rm -rf .venv' #'poetry env remove'
 
 #----Django shortcuts-----------
 # alias runserver='python manage.py runserver'
