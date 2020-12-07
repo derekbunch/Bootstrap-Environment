@@ -11,17 +11,6 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -74,8 +63,27 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages colorize github vagrant virtualenv pip python aws zsh-autosuggestions zsh-syntax-highlighting zsh-sync fzf tmux) #fasd
-# (osx poetry brew virtualenvwrapper z)
+plugins=(
+  git
+  colored-man-pages
+  colorize
+  github
+  vagrant
+  virtualenv
+  pip
+  python
+  aws
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  # zsh-sync
+  fzf
+  tmux
+  z
+  #fasd
+  #osx
+  poetry
+  virtualenvwrapper
+  )
 
 ## Source all configs
 if [ -f $HOME/Bootstrap-Environment/personal ]; then
@@ -111,10 +119,6 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 fpath+=~/.zfunc
 compinit
@@ -125,7 +129,7 @@ _comp_options+=(globdots)
 #---------------------
 
 # eval $(thefuck --alias)
-eval "$(fasd --init auto)"
+# eval "$(fasd --init auto)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
