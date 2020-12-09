@@ -81,8 +81,8 @@ plugins=(
   z
   #fasd
   #osx
-  poetry
-  virtualenvwrapper
+  # poetry
+  # virtualenvwrapper
   )
 
 ## Source all configs
