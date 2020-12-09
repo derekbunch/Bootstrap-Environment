@@ -26,6 +26,11 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]
       sudo yum -y install zsh
       echo; echo "Installing tmux"
       sudo yum -y install tmux
+      echo; echo "Installing exa"
+      curl https://sh.rustup.rs -sSf | sh -s -- -y
+      wget -c https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip
+      unzip exa-linux-x86_64-0.9.0.zip
+      sudo mv exa-linux-x86_64 /usr/local/bin/exa
       # echo; echo "Changing shell"
       # chsh -s $(which zsh)
     else
