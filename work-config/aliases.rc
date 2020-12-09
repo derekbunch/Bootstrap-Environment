@@ -46,6 +46,9 @@ alias pinfo='poetry env info'
 alias pls='poetry env list'
 alias prmvenv='rm -rf .venv' #'poetry env remove'
 
+#----Docker shortcuts-----------
+alias dc='docker-compose'
+
 #----Django shortcuts-----------
 # alias runserver='python manage.py runserver'
 # alias makem='python manage.py makemigrations && python manage.py migrate'
