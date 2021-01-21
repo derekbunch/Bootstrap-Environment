@@ -63,3 +63,6 @@ alias awkcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
 alias awkinserts='awk "/INSERT INTO/ && !a[$3]++{print $3}"'
 alias grepcreate="grep -Ei 'CREATE TABLE \`.*\`'"
 alias grepinsert="grep -Ei 'INSERT INTO \`.*\`'"
+
+#-----parsing shortcuts----------
+alias parse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
