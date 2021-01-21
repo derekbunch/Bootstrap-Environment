@@ -67,3 +67,4 @@ alias grepinsert="grep -Ei 'INSERT INTO \`.*\`'"
 #-----parsing shortcuts----------
 alias parse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
 alias emails='grep -irhEo "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" . | sort -u > unique-email.txt'
+alias source_id='basename "$PWD"'
