@@ -19,6 +19,7 @@ alias ll="ls -lh --git"
 alias llg="ll --grid"
 alias lt="ls -T"
 alias llt="ll -T"
+alias lsize='exa --group-directories-first -alh -s=size'
 
 #----Python shortcuts-----------
 alias py='python3'
@@ -37,8 +38,8 @@ alias workondata='workon SpyCloud'
 alias pshell='poetry shell'
 alias pupdate='poetry update'
 alias pinstall='poetry install'
-alias penv3.9='poetry env use /usr/local/opt/python@3.9/bin/python3.9 && pinstall && pshell'
-alias penv3.8='poetry env use /usr/local/opt/python@3.8/bin/python3.8 && pinstall && pshell'
+alias penv3_9='poetry env use /usr/local/opt/python@3.9/bin/python3.9 && pinstall && pshell'
+alias penv3_8='poetry env use /usr/local/opt/python@3.8/bin/python3.8 && pinstall && pshell'
 alias padd='poetry add'
 alias prem='poetry remove'
 alias prun='poetry run'
@@ -66,5 +67,6 @@ alias grepinsert="grep -Ei 'INSERT INTO \`.*\`'"
 
 #-----parsing shortcuts----------
 alias parse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
+alias reparse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parser/reparser.py"
 alias emails='grep -irhEo "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" . | sort -u > unique-email.txt'
 alias source_id='basename "$PWD"'
