@@ -29,6 +29,10 @@ alias updatels='alias ls="exa --group-directories-first"
                 alias lt="ls -T"
                 alias llt="ll -T"'
 
+#----Git shortcuts-----------
+alias addgituser='git config --global user.email "derekbunch93@gmail.com"
+git config --global user.name "Derek Bunch"'
+
 #----Python shortcuts-----------
 alias py='python3'
 alias pip='py -m pip'
