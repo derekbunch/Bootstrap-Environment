@@ -10,6 +10,7 @@ alias wcl='wc -l ./* | sort -nr'
 alias c="clear"
 alias q="exit"
 alias quit="exit"
+alias getip="ip a | rg 10.0"
 
 #----Exa shortcuts--------------
 alias ls="exa --group-directories-first"
@@ -20,6 +21,13 @@ alias llg="ll --grid"
 alias lt="ls -T"
 alias llt="ll -T"
 alias lsize='exa --group-directories-first -alh -s=size'
+alias updatels='alias ls="exa --group-directories-first"
+                alias l="ls -1"
+                alias la="l -a"
+                alias ll="ls -lh --git"
+                alias llg="ll --grid"
+                alias lt="ls -T"
+                alias llt="ll -T"'
 
 #----Python shortcuts-----------
 alias py='python3'

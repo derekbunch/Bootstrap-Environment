@@ -78,6 +78,11 @@ echo; echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --no-key-bindings --no-update-rc --completion
 
+# vimrc
+echo; echo "Installing awesome vimrc"
+git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+sh ~/.vim_runtime/install_awesome_vimrc.sh
+
 if (( $is_amazon_linux != 1 ))
 then
   echo; echo "Installing fasd"
