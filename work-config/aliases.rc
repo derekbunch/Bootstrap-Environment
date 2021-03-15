@@ -37,6 +37,7 @@ git config --global user.name "Derek Bunch"'
 alias py='python3'
 alias pip='py -m pip'
 alias changepython3version='sudo update-alternatives --config python3'
+alias pdb='python -m debugpy'
 
 #----VirtualEnv shortcuts-----------
 # source /usr/local/bin/virtualenvwrapper.sh
@@ -79,6 +80,7 @@ alias grepinsert="grep -Ei 'INSERT INTO \`.*\`'"
 
 #-----parsing shortcuts----------
 alias parse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
+alias parsedb="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python -m debugpy --listen 0.0.0.0:5678 ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
 alias reparse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parser/reparser.py"
 alias emails='grep -irhEo "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" . | sort -u > unique-email.txt'
 alias source_id='basename "$PWD"'
