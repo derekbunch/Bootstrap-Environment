@@ -10,7 +10,7 @@ alias wcl='wc -l ./* | sort -nr'
 alias c="clear"
 alias q="exit"
 alias quit="exit"
-alias getip="ip a | rg 10.0"
+alias getip="ip a | rg 10.0."
 
 #----Exa shortcuts--------------
 alias ls="exa --group-directories-first"
@@ -75,8 +75,8 @@ alias dc='docker-compose'
 #-----regex shortcuts----------
 alias awkcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
 alias awkinserts='awk "/INSERT INTO/ && !a[$3]++{print $3}"'
-alias grepcreate="grep -Ei 'CREATE TABLE \`.*\`'"
-alias grepinsert="grep -Ei 'INSERT INTO \`.*\`'"
+alias rgcreate="rg -i 'CREATE TABLE \`.*\`'"
+alias rginsert="rg -i 'INSERT INTO \`.*\`'"
 
 #-----parsing shortcuts----------
 alias parse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
