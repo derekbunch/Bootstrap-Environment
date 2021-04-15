@@ -14,6 +14,8 @@ then
   brew install thefuck
   echo; echo "Installing fasd"
   brew install fasd
+  echo; echo "Installing jq"
+  brew install jq
 elif [[ "$OSTYPE" == "linux-gnu"* ]]
   then
   is_amazon_linux=$(hostnamectl | grep 'Amazon' | wc -l)
@@ -26,6 +28,8 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]
       sudo yum -y install zsh
       echo; echo "Installing tmux"
       sudo yum -y install tmux
+      echo; echo "Installing jq"
+      sudo yum -y install jq
       echo; echo "Installing exa"
       curl https://sh.rustup.rs -sSf | sh -s -- -y
       wget -c https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip
@@ -39,6 +43,8 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]
       sudo apt-get install zsh -y
       echo; echo "Installing tmux"
       sudo apt-get install tmux -y
+      echo; echo "Installing jq"
+      sudo apt-get install jq -y
       echo; echo "Changing shell"
       chsh -s $(which zsh)
       echo; echo "Installing exa"
