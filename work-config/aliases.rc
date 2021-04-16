@@ -83,6 +83,6 @@ alias parse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~
 alias parsedb="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python -m debugpy --listen 0.0.0.0:5678 ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
 alias reparse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parser/reparser.py"
 alias emails='grep -irhEo "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" . | sort -u > unique-email.txt'
-alias cust="rg -o 'CREATE TABLE (IF NOT EXISTS)? \`.*?\`' *.sql | rg customer"
-alias user="rg -o 'CREATE TABLE (IF NOT EXISTS)? \`.*?\`' *.sql | rg user"
+alias cust="rg -o 'CREATE TABLE( IF NOT EXISTS)? \`.*?\`' *.sql | rg customer"
+alias user="rg -o 'CREATE TABLE( IF NOT EXISTS)? \`.*?\`' *.sql | rg user"
 alias source_id='basename "$PWD"'
