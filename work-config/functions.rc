@@ -28,8 +28,12 @@ function awsls() {
   aws s3 ls s3://vuka-ingest-manager/$1
 }
 
-function awscp() {
+function awspush() {
   aws s3 cp $1 s3://vuka-ingest-manager/$2
+}
+
+function awspull() {
+  aws s3 cp s3://vuka-ingest-manager/$1 $2
 }
 
 function awssync() {
