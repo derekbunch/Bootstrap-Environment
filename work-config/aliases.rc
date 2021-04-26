@@ -29,6 +29,13 @@ alias updatels='alias ls="exa --group-directories-first"
                 alias lt="ls -T"
                 alias llt="ll -T"'
 
+#----tmux shortcuts-----------
+alias tl='tmux ls'
+alias ta='tmux a -t'
+alias tnew='tmux new -s'
+alias tkill='tmux kill-session -t'
+alias tkillall='tmux kill-session -a'
+
 #----Git shortcuts-----------
 alias addgituser='git config --global user.email "derekbunch93@gmail.com"
 git config --global user.name "Derek Bunch"'
