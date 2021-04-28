@@ -10,6 +10,7 @@ alias wcl='wc -l ./* | sort -nr'
 alias c="clear"
 alias q="exit"
 alias quit="exit"
+alias getip="ip a | rg 10.0."
 
 #----Exa shortcuts--------------
 alias ls="exa --group-directories-first"
@@ -20,11 +21,30 @@ alias llg="ll --grid"
 alias lt="ls -T"
 alias llt="ll -T"
 alias lsize='exa --group-directories-first -alh -s=size'
+alias updatels='alias ls="exa --group-directories-first"
+                alias l="ls -1"
+                alias la="l -a"
+                alias ll="ls -lh --git"
+                alias llg="ll --grid"
+                alias lt="ls -T"
+                alias llt="ll -T"'
+
+#----tmux shortcuts-----------
+alias tl='tmux ls'
+alias ta='tmux a -t'
+alias tnew='tmux new -s'
+alias tkill='tmux kill-session -t'
+alias tkillall='tmux kill-session -a'
+
+#----Git shortcuts-----------
+alias addgituser='git config --global user.email "derekbunch93@gmail.com"
+git config --global user.name "Derek Bunch"'
 
 #----Python shortcuts-----------
 alias py='python3'
 alias pip='py -m pip'
 alias changepython3version='sudo update-alternatives --config python3'
+alias pdb='python -m debugpy'
 
 #----VirtualEnv shortcuts-----------
 # source /usr/local/bin/virtualenvwrapper.sh
@@ -62,11 +82,14 @@ alias dc='docker-compose'
 #-----regex shortcuts----------
 alias awkcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
 alias awkinserts='awk "/INSERT INTO/ && !a[$3]++{print $3}"'
-alias grepcreate="grep -Ei 'CREATE TABLE \`.*\`'"
-alias grepinsert="grep -Ei 'INSERT INTO \`.*\`'"
+alias rgcreate="rg -i 'CREATE TABLE \`.*\`'"
+alias rginsert="rg -i 'INSERT INTO \`.*\`'"
 
 #-----parsing shortcuts----------
 alias parse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
+alias parsedb="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python -m debugpy --listen 0.0.0.0:5678 ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
 alias reparse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parser/reparser.py"
 alias emails='grep -irhEo "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" . | sort -u > unique-email.txt'
+alias cust="rg -o 'CREATE TABLE( IF NOT EXISTS)? \`.*?\`' *.sql | rg customer"
+alias user="rg -o 'CREATE TABLE( IF NOT EXISTS)? \`.*?\`' *.sql | rg user"
 alias source_id='basename "$PWD"'
