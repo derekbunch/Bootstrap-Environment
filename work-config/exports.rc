@@ -3,3 +3,4 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3.8
 export FZF_BASE=~/.fzf
 export ZSH_TMUX_UNICODE=true
 export ZSH_TMUX_CONFIG=~/Bootstrap-Environment/work-config/.tmux.conf
+export QMK_HOME=~/.qmk_firmware
