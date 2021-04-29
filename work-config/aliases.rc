@@ -48,6 +48,7 @@ alias py='python3'
 alias pip='py -m pip'
 alias changepython3version='sudo update-alternatives --config python3'
 alias pdb='python -m debugpy'
+alias ipy='pip3 install ipython &> /dev/null && ipython'
 
 #----VirtualEnv shortcuts-----------
 # source /usr/local/bin/virtualenvwrapper.sh
