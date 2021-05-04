@@ -91,10 +91,11 @@ echo -e "\n${Bold}${Green}Installing awesome vimrc${end}"
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
+# vim gruvbox
 echo -e "\n${Bold}${Yellow}Changing vim theme to gruvbox${end}"
 mkdir ~/.vim/colors
 git clone https://github.com/morhetz/gruvbox.git ~/.vim/colors
-echo "colorscheme gruvbox" >> ~/.vim_runtime/vimrcs/basic.vim
+echo "colorscheme gruvbox" > ~/.vim_runtime/my_plugins/gruvbox.vim
 
 if (($is_amazon_linux != 1)); then
   echo -e "\n${Bold}${Green}Installing fasd${end}"
