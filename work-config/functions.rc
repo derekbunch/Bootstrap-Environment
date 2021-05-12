@@ -21,7 +21,7 @@ function squashmerge() {
 }
 
 function awsls() {
-  aws s3 ls s3://vuka-ingest-manager/$1
+  aws s3 ls s3://vuka-ingest-manager/$1 --human-readable
 }
 
 function awspush() {
