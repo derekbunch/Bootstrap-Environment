@@ -36,6 +36,15 @@ function awssync() {
   aws s3 sync s3://vuka-ingest-manager/$1 $2
 }
 
+function removed_key() {
+  readonly filename=${1:?"Which log file would you like to check?"}
+  readonly key=${2:?"Which key would you like to check?"}
+  if [[ "$filename" != *.log ]]; then
+    echo "Must be a log file"
+  fi
+  jq .removed $filename | jq "select(.$key != null)"
+}
+
 function striptable() {
   while getopts t:f: flag; do
     case "${flag}" in
