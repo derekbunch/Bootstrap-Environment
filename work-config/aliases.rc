@@ -47,6 +47,7 @@ alias tf='terraform'
 alias py='python3'
 alias pip='py -m pip'
 alias changepython3version='sudo update-alternatives --config python3'
+alias pyenv_fetch='ln -s $(brew --cellar)/python*/* ~/.pyenv/versions/'
 alias pdb='python -m debugpy'
 alias ipy="pip3 install ipython &> /dev/null && python3 -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 
