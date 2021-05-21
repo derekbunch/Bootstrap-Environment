@@ -50,18 +50,30 @@ function parse() {
   f=${1:?"Please provide a file to be parsed"}
   source_id=$(source_id)
   debug=false
-  while getopts s:f:debug: flag; do
+  output=false
+  while getopts s:f:d:o: flag; do
     case "${flag}" in
     s) source_id=${OPTARG} ;;
     f) f=${OPTARG} ;;
-    debug) debug=true ;;
+    d) debug=true ;;
+    o)
+      output_file=${OPTARG}
+      output=true
+      ;;
     esac
   done
   echo "\nSource ID: $source_id"
-  echo "File: $f\n"
+  echo "File: $f"
+  if ($output); then
+    echo "Output File: $output_file"
+  fi
+  echo -e "\n"
   if read -q "run?(Y/y) to run reparser with these args: "; then
+    echo -e "\n"
     if ($debug); then
       PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python -m debugpy --listen 0.0.0.0:5678 ~/data-ingest-pipeline-tools/code/data_parsing/parse.py -s $source_id -f $f
+    elif ($output); then
+      PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py -s $source_id -f $f >$output_file
     else
       PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py -s $source_id -f $f
     fi
