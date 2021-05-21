@@ -46,63 +46,31 @@ function removed_key() {
 }
 
 #-----Parsing functions----------
-function parse() {
-  f=${1:?"Please provide a file to be parsed"}
-  source_id=$(source_id)
-  debug=false
-  output=false
-  while getopts s:f:d:o: flag; do
-    case "${flag}" in
-    s) source_id=${OPTARG} ;;
-    f) f=${OPTARG} ;;
-    d) debug=true ;;
-    o)
-      output_file=${OPTARG}
-      output=true
-      ;;
-    esac
-  done
-  echo "\nSource ID: $source_id"
-  echo "File: $f"
-  if ($output); then
-    echo "Output File: $output_file"
-  fi
-  echo -e "\n"
-  if read -q "run?(Y/y) to run reparser with these args: "; then
-    echo -e "\n"
-    if ($debug); then
-      PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python -m debugpy --listen 0.0.0.0:5678 ~/data-ingest-pipeline-tools/code/data_parsing/parse.py -s $source_id -f $f
-    elif ($output); then
-      PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py -s $source_id -f $f >$output_file
-    else
-      PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py -s $source_id -f $f
-    fi
-  fi
-}
-
 function reparse() {
   update_date=$(date -d "this thursday" +%F)
-  output_json_cnt=$(ls output/*.json | wc -l) >/dev/null 2>&1
-  if [[ -s output/original.json ]]; then
-    old=output/original.json
-  elif [[ $output_json_cnt == 1 ]]; then
-    old=output/*.json
+  original_json_cnt=$(ls ./orig/*.json | wc -l) >/dev/null 2>&1
+  if [[ -s orig/original.json ]]; then
+    orig=orig/original.json
+  elif [[ $original_json_cnt == 1 ]]; then
+    orig="$(ls orig/*.json)"
   else
-    old=""
+    echo "$original_json_cnt original json files"
+    orig=""
   fi
   new=$(source_id).json
   while getopts d:o:n: flag; do
     case "${flag}" in
     d) update_date=${OPTARG} ;;
-    o) old=${OPTARG} ;;
+    o) orig=${OPTARG} ;;
     n) new=${OPTARG} ;;
     esac
   done
-  echo "\nOld = $old"
+  echo "\nOld = $orig"
   echo "New = $new"
   echo "Update Date = $update_date\n"
   if read -q "run?(Y/y) to run reparser with these args: "; then
-    PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parser/reparser.py -o $old -n $new -d $update_date
+    echo "\n"
+    PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parser/reparser.py -o $orig -n $new -d $update_date
   fi
 }
 

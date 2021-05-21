@@ -95,7 +95,10 @@ alias rgcreate="rg -i 'CREATE TABLE \`.*\`'"
 alias rginsert="rg -i 'INSERT INTO \`.*\`'"
 
 #-----parsing shortcuts----------
+alias source_id='basename "$PWD"'
+alias parse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
+alias parses="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py -s $(source_id)"
+alias parsedb="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python -m debugpy --listen 0.0.0.0:5678 ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
 alias emails='grep -irhEo "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" . | sort -u > unique-email.txt'
 alias cust="rg -o 'CREATE TABLE( IF NOT EXISTS)? \`.*?\`' *.sql | rg customer"
 alias user="rg -o 'CREATE TABLE( IF NOT EXISTS)? \`.*?\`' *.sql | rg user"
-alias source_id='basename "$PWD"'
