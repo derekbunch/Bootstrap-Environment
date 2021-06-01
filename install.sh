@@ -95,7 +95,10 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 echo -e "\n${Bold}${Yellow}Changing vim theme to gruvbox${end}"
 mkdir ~/.vim/colors
 git clone https://github.com/morhetz/gruvbox.git ~/.vim/colors
-echo "colorscheme gruvbox" > ~/.vim_runtime/my_plugins/gruvbox.vim
+echo "colorscheme gruvbox" >~/.vim_runtime/my_plugins/gruvbox.vim
+
+# Install iTerm Shell Integration
+curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | zsh
 
 if (($is_amazon_linux != 1)); then
   echo -e "\n${Bold}${Green}Installing fasd${end}"
