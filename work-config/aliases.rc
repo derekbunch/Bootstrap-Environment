@@ -48,7 +48,7 @@ alias py='python3'
 alias pip='py -m pip'
 alias changepython3version='sudo update-alternatives --config python3'
 # Start Pyenv
-if ! type pyenv >/dev/null; then
+if type pyenv >/dev/null; then
     eval "$(pyenv init -)"
 fi
 alias pyenv_fetch='ln -s $(brew --cellar)/python*/* ~/.pyenv/versions/'
@@ -95,10 +95,11 @@ alias rgcreate="rg -i 'CREATE TABLE \`.*\`'"
 alias rginsert="rg -i 'INSERT INTO \`.*\`'"
 
 #-----parsing shortcuts----------
+alias source_id='basename "$PWD"'
 alias parse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
+alias parses="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py -s $(source_id)"
 alias parsedb="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python -m debugpy --listen 0.0.0.0:5678 ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
-alias reparse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parser/reparser.py"
 alias emails='grep -irhEo "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" . | sort -u > unique-email.txt'
 alias cust="rg -o 'CREATE TABLE( IF NOT EXISTS)? \`.*?\`' *.sql | rg customer"
 alias user="rg -o 'CREATE TABLE( IF NOT EXISTS)? \`.*?\`' *.sql | rg user"
-alias source_id='basename "$PWD"'
+alias bk="mkdir files && cp * files"

@@ -1,5 +1,6 @@
 path+=/usr/local/bin/
 path+=/usr/local/lib/python3.8/site-packages:/Users/derekbunch/Library/Python/3.8/lib/python/site-packages
-PATH=$(pyenv root)/shims:$(pyenv root)/bin:$PATH
-
+if type pyenv >/dev/null; then
+    PATH=$(pyenv root)/shims:$(pyenv root)/bin:$PATH
+fi
 export PATH

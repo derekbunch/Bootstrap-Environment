@@ -1,4 +1,4 @@
-#----Functions-------------
+#----Functions-------------------
 function countfiles() {
   readonly filetype=${1:?"Please provide a filetype"}
   find . -type f -name \*.$filetype | wc -l
@@ -43,6 +43,35 @@ function removed_key() {
     echo "Must be a log file"
   fi
   jq .removed $filename | jq "select(.$key != null)"
+}
+
+#-----Parsing functions----------
+function reparse() {
+  update_date=$(date -d "this thursday" +%F)
+  original_json_cnt=$(ls ./orig/*.json | wc -l) >/dev/null 2>&1
+  if [[ -s orig/original.json ]]; then
+    orig=orig/original.json
+  elif [[ $original_json_cnt == 1 ]]; then
+    orig="$(ls orig/*.json)"
+  else
+    echo "$original_json_cnt original json files"
+    orig=""
+  fi
+  new=$(source_id).json
+  while getopts d:o:n: flag; do
+    case "${flag}" in
+    d) update_date=${OPTARG} ;;
+    o) orig=${OPTARG} ;;
+    n) new=${OPTARG} ;;
+    esac
+  done
+  echo "\nOld = $orig"
+  echo "New = $new"
+  echo "Update Date = $update_date\n"
+  if read -q "run?(Y/y) to run reparser with these args: "; then
+    echo "\n"
+    PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parser/reparser.py -o $orig -n $new -d $update_date
+  fi
 }
 
 function striptable() {
