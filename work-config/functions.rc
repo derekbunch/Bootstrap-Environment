@@ -46,6 +46,10 @@ function removed_key() {
 }
 
 #-----Parsing functions----------
+function parses() {
+  PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py -s $(source_id) "$@"
+}
+
 function reparse() {
   update_date=$(date -d "this thursday" +%F)
   original_json_cnt=$(ls ./orig/*.json | wc -l) >/dev/null 2>&1
