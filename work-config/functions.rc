@@ -20,16 +20,16 @@ function squashmerge() {
   git merge --squash $target_branch_name
 }
 
-function awsls() {
-  aws s3 ls s3://vuka-ingest-manager/$1 --human-readable
-}
-
 function awspush() {
   aws s3 cp $1 s3://vuka-ingest-manager/$2
 }
 
 function awspull() {
   aws s3 cp s3://vuka-ingest-manager/$1 $2
+}
+
+function awsls() {
+  aws s3 ls s3://vuka-ingest-manager/$1 --human-readable
 }
 
 function awssync() {
@@ -51,7 +51,7 @@ function parses() {
 }
 
 function reparse() {
-  update_date=$(date -d "this thursday" +%F)
+  # update_date=$(date -d "this thursday" +%F)
   original_json_cnt=$(ls ./orig/*.json | wc -l) >/dev/null 2>&1
   if [[ -s orig/original.json ]]; then
     orig=orig/original.json
@@ -64,20 +64,59 @@ function reparse() {
   new=$(source_id).json
   while getopts d:o:n: flag; do
     case "${flag}" in
-    d) update_date=${OPTARG} ;;
+    # d) update_date=${OPTARG} ;;
     o) orig=${OPTARG} ;;
     n) new=${OPTARG} ;;
     esac
   done
   echo "\nOld = $orig"
   echo "New = $new"
-  echo "Update Date = $update_date\n"
+  # echo "Update Date = $update_date\n"
   if read -q "run?(Y/y) to run reparser with these args: "; then
     echo "\n"
-    PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parser/reparser.py -o $orig -n $new -d $update_date
+    PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parser/reparser.py -o $orig -n $new
+    #-d $update_date
   fi
 }
 
+function defaultupload() {
+  local breach_id
+  local env=prod
+  local filename=$(source_id).json
+  while getopts e: flag; do
+    case "${flag}" in
+    e) env=${OPTARG} ;;
+    f) filename=${OPTARG} ;;
+    o) original=${OPTARG} ;;
+    i) breach_id=${OPTARG} ;;
+    esac
+  done
+  if [[ ! $original ]]; then
+    echo "Please select the original file:"
+    select orig in $(ls); do
+      local original=$orig
+      break
+    done
+  fi
+  while [[ ! $breach_id ]]; do
+    echo "What is the breach ID: "
+    read breach_id
+  done
+  if [[ $original == *".sql" ]]; then
+    echo "Found sql file, ignoring linecount\n"
+    local ignore_linecount="--ignore-linecount"
+  fi
+  echo "Environment: $env"
+  echo "Parsed File: $filename"
+  echo "Original File: $original"
+  echo "Breach ID: $breach_id"
+  if read -q "run?(Y/y) to run reparser with these args: "; then
+    echo "\n"
+    python ~/data-ingest-pipeline-tools/code/data_parsing/upload.py -e $env -f $filename -i $breach_id -o $original $ignore_linecount
+  fi
+}
+
+#-----SQL Functions-----------
 function striptable() {
   while getopts t:f: flag; do
     case "${flag}" in

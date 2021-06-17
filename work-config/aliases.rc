@@ -96,6 +96,7 @@ alias rginsert="rg -i 'INSERT INTO \`.*\`'"
 
 #-----parsing shortcuts----------
 alias source_id='basename "$PWD"'
+alias upload="python ~/data-ingest-pipeline-tools/code/data_parsing/upload.py"
 alias parse="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
 alias parsedb="PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python -m debugpy --listen 0.0.0.0:5678 ~/data-ingest-pipeline-tools/code/data_parsing/parse.py"
 alias emails='grep -irhEo "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" . | sort -u > unique-email.txt'
