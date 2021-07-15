@@ -80,7 +80,7 @@ function reparse() {
 }
 
 function defaultupload() {
-  local breach_id
+  # local breach_id
   local env=prod
   local filename=$(source_id).json
   while getopts e: flag; do
@@ -88,7 +88,7 @@ function defaultupload() {
     e) env=${OPTARG} ;;
     f) filename=${OPTARG} ;;
     o) original=${OPTARG} ;;
-    i) breach_id=${OPTARG} ;;
+    # i) breach_id=${OPTARG} ;;
     esac
   done
   if [[ ! $original ]]; then
@@ -98,10 +98,10 @@ function defaultupload() {
       break
     done
   fi
-  while [[ ! $breach_id ]]; do
-    echo "What is the breach ID: "
-    read breach_id
-  done
+  # while [[ ! $breach_id ]]; do
+  #   echo "What is the breach ID: "
+  #   read breach_id
+  # done
   if [[ $original == *".sql" ]]; then
     echo "Found sql file, ignoring linecount\n"
     local ignore_linecount="--ignore-linecount"
@@ -109,10 +109,11 @@ function defaultupload() {
   echo "Environment: $env"
   echo "Parsed File: $filename"
   echo "Original File: $original"
-  echo "Breach ID: $breach_id"
+  # echo "Breach ID: $breach_id"
   if read -q "run?(Y/y) to run reparser with these args: "; then
     echo "\n"
-    python ~/data-ingest-pipeline-tools/code/data_parsing/upload.py -e $env -f $filename -i $breach_id -o $original $ignore_linecount
+    python ~/data-ingest-pipeline-tools/code/data_parsing/upload.py -e $env -f $filename -o $original $ignore_linecount
+    # -i $breach_id
   fi
 }
 
