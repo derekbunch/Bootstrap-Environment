@@ -121,8 +121,9 @@ select yn in "Yes" "No"; do
     touch work
     echo -e "\n${Bold}${Blue}Linking tmuxrc${end}"
     ln work-config/.tmux.conf ~/.tmux.conf
+    echo -e "\n${Bold}${Blue}Linking workspace config${end}"
+    ln work-config/parsing.code-workspace /mnt/data/input/parsing.code-workspace
     git clone "https://derekbunch:$gh_token@github.com/derekbunch/parsing_scripts.git" /mnt/data/input/scripts
-    # mkdir /mnt/data/input/new /mnt/data/input/new/csv /mnt/data/input/new/json /mnt/data/input/new/sql /mnt/data/input/new/csv/parsed /mnt/data/input/new/json/parsed /mnt/data/input/new/sql/parsed /mnt/data/input/updates /mnt/data/input/updates/parsed
     mkdir /mnt/data/input/parsed
     break
     ;;
