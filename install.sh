@@ -122,7 +122,7 @@ select yn in "Yes" "No"; do
     echo -e "\n${Bold}${Blue}Linking tmuxrc${end}"
     ln work-config/.tmux.conf ~/.tmux.conf
     echo -e "\n${Bold}${Blue}Linking workspace config${end}"
-    ln work-config/parsing.code-workspace /mnt/data/input/parsing.code-workspace
+    ln -s work-config/myparsing.code-workspace /mnt/data/input/
     git clone "https://derekbunch:$gh_token@github.com/derekbunch/parsing_scripts.git" /mnt/data/input/scripts
     mkdir /mnt/data/input/parsed
     break
