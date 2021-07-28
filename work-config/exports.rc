@@ -4,3 +4,4 @@ export FZF_BASE=~/.fzf
 export ZSH_TMUX_UNICODE=true
 export ZSH_TMUX_CONFIG=~/Bootstrap-Environment/work-config/.tmux.conf
 export QMK_HOME=~/.qmk_firmware
+export NVM_DIR="$HOME/.nvm"
