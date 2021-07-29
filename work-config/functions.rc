@@ -110,9 +110,9 @@ function defaultupload() {
   echo "Parsed File: $filename"
   echo "Original File: $original"
   # echo "Breach ID: $breach_id"
-  if read -q "run?(Y/y) to run reparser with these args: "; then
+  if read -q "run?(Y/y) to run uploader with these args: "; then
     echo "\n"
-    python ~/data-ingest-pipeline-tools/code/data_parsing/upload.py -e $env -f $filename -o $original $ignore_linecount -i
+    python ~/data-ingest-pipeline-tools/code/data_parsing/upload.py -e $env -f $filename -o $original $ignore_linecount
     # -i $breach_id
   fi
 }
