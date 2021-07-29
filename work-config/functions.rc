@@ -88,7 +88,7 @@ function defaultupload() {
     e) env=${OPTARG} ;;
     f) filename=${OPTARG} ;;
     o) original=${OPTARG} ;;
-    # i) breach_id=${OPTARG} ;;
+      # i) breach_id=${OPTARG} ;;
     esac
   done
   if [[ ! $original ]]; then
@@ -112,7 +112,7 @@ function defaultupload() {
   # echo "Breach ID: $breach_id"
   if read -q "run?(Y/y) to run reparser with these args: "; then
     echo "\n"
-    python ~/data-ingest-pipeline-tools/code/data_parsing/upload.py -e $env -f $filename -o $original $ignore_linecount
+    python ~/data-ingest-pipeline-tools/code/data_parsing/upload.py -e $env -f $filename -o $original $ignore_linecount -i
     # -i $breach_id
   fi
 }
