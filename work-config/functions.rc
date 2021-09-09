@@ -47,7 +47,7 @@ function removed_key() {
 
 #-----Parsing functions----------
 function parses() {
-  PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parse.py -s $(source_id) "$@"
+  PYTHONPATH=~/app/code/ python -m parse -s $(source_id) "$@"
 }
 
 function reparse() {
@@ -74,7 +74,7 @@ function reparse() {
   # echo "Update Date = $update_date\n"
   if read -q "run?(Y/y) to run reparser with these args: "; then
     echo "\n"
-    PYTHONPATH=~/data-ingest-pipeline-tools/code/normalization python ~/data-ingest-pipeline-tools/code/data_parsing/parser/reparser.py -o $orig -n $new
+    PYTHONPATH=~/app/code python -m reparse -o $orig -n $new
     #-d $update_date
   fi
 }
@@ -112,7 +112,7 @@ function defaultupload() {
   # echo "Breach ID: $breach_id"
   if read -q "run?(Y/y) to run uploader with these args: "; then
     echo "\n"
-    python ~/data-ingest-pipeline-tools/code/data_parsing/upload.py -e $env -f $filename -o $original $ignore_linecount
+    PYTHONPATH=~/app/code python -m upload -e $env -f $filename -o $original $ignore_linecount
     # -i $breach_id
   fi
 }
