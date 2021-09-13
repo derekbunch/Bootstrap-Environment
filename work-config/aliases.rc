@@ -96,6 +96,7 @@ alias rginsert="rg -i 'INSERT INTO \`.*\`'"
 
 #-----parsing shortcuts----------
 alias source_id='basename "$PWD"'
+alias activate='source ~/venv/bin/activate'
 alias upload="PYTHONPATH=~/app/code python -m upload"
 alias parse="PYTHONPATH=~/app/code/ python -m parse"
 alias parsedb="PYTHONPATH=~/app/code/ python -m parse -m debugpy --listen 0.0.0.0:5678"
