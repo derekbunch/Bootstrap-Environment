@@ -3,11 +3,7 @@ echo -e "\n${Bold}${Blue}Checking OS version${end}"
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo -e "\n${Bold}${Yellow}OS is OS X${end}"
   echo -e "\n${Bold}${Green}Installing Homebrew${end}"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)${end}"
-  echo -e "\n${Bold}${Green}Installing zsh${end}"
-  brew install zsh
-  echo -e "\n${Bold}${Green}Changing shell${end}"
-  chsh -s $(which zsh)
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   echo -e "\n${Bold}${Green}Installing exa${end}"
   brew install exa
   echo -e "\n${Bold}${Green}Installing thefuck${end}"
