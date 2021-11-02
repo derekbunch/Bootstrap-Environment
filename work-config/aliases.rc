@@ -79,14 +79,11 @@ alias prmvenv='rm -rf .venv' #'poetry env remove'
 #----Docker shortcuts-----------
 alias dc='docker compose'
 
-#----Django shortcuts-----------
-# alias runserver='python manage.py runserver'
-# alias makem='python manage.py makemigrations && python manage.py migrate'
-
-#-----pipenv shortcuts----------
-# alias pshell='pipenv shell'
-# alias pinstall='pipenv install'
-# alias plock='pipenv lock --clear'
+#-----dbt shortcuts----------
+alias dbt_start="zsh ~/recharge/dbt/main/dbt_start.sh"
+alias dbt_stop="zsh ~/recharge/dbt/main/dbt_stop.sh"
+alias dbt_dev="zsh ~/recharge/dbt/main/dbt_dev.sh"
+alias dbt_bare="zsh ~/recharge/dbt/main/dbt_bare.sh"
 
 #-----regex shortcuts----------
 alias awkcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
@@ -94,13 +91,10 @@ alias awkinserts='awk "/INSERT INTO/ && !a[$3]++{print $3}"'
 alias rgcreate="rg -i 'CREATE TABLE \`.*\`'"
 alias rginsert="rg -i 'INSERT INTO \`.*\`'"
 
-#-----parsing shortcuts----------
-alias source_id='basename "$PWD"'
-alias activate='source ~/venv/bin/activate'
-alias upload="PYTHONPATH=~/app/code python -m upload"
-alias parse="PYTHONPATH=~/app/code/ python -m parse"
-alias parsedb="PYTHONPATH=~/app/code/ python -m parse -m debugpy --listen 0.0.0.0:5678"
-alias emails='grep -irhEo "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" . | sort -u > unique-email.txt'
-alias cust="rg -o 'CREATE TABLE( IF NOT EXISTS)? \`.*?\`' *.sql | rg customer"
-alias user="rg -o 'CREATE TABLE( IF NOT EXISTS)? \`.*?\`' *.sql | rg user"
-alias bk="mkdir _files && cp * _files"
+#----Django shortcuts-----------
+# alias runserver='python manage.py runserver'
+# alias makem='python manage.py makemigrations && python manage.py migrate'
+
+# #-----parsing shortcuts----------
+# alias emails='grep -irhEo "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" . | sort -u > unique-email.txt'
+# alias bk="mkdir _files && cp * _files"

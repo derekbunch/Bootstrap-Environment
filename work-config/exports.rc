@@ -5,3 +5,9 @@ export ZSH_TMUX_UNICODE=true
 export ZSH_TMUX_CONFIG=~/Bootstrap-Environment/work-config/.tmux.conf
 export QMK_HOME=~/.qmk_firmware
 export NVM_DIR="$HOME/.nvm"
+export TOUCHBAR_GIT_ENABLED=true
+
+#---- Recharge --------------
+export CLOUDSDK_PYTHON=python3
+export VAULT_ADDR=https://vault.rechargeapps.net:8200
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES

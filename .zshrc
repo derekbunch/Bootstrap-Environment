@@ -68,19 +68,22 @@ plugins=(
   colored-man-pages
   colorize
   github
-  vagrant
+  docker
+  docker-compose
   virtualenv
   pip
   python
   aws
   zsh-autosuggestions
   zsh-syntax-highlighting
-  # zsh-sync
+  zsh-iterm-touchbar
   fzf
   tmux
   z
+  osx
+  appup
   #fasd
-  #osx
+  # zsh-sync
   # poetry
   # virtualenvwrapper
   )
@@ -121,10 +124,12 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 fpath+=~/.zfunc
+autoload -U +X compinit compdef
 compinit
 _comp_options+=(globdots)
-
 eval "$(ssh-agent -s)" &>/dev/null
+eval "$(direnv hook zsh)"
+
 
 #--Zsh Sync Config----
 #ZSH_SYNC_REMOTE=
@@ -142,3 +147,6 @@ eval "$(ssh-agent -s)" &>/dev/null
 source ~/Bootstrap-Environment/.zsh-theme-gruvbox-material-dark
 
 updatels
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
