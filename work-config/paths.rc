@@ -1,8 +1,24 @@
 path+=/usr/local/bin/
-path+=/usr/local/lib/python3.9/site-packages:/Users/derekbunch/Library/Python/3.9/lib/python/site-packages
+
+# Add global python site-packages
+for version in /usr/local/lib/python*; do
+    path+=$version/site-packages
+done
+
+# Add user python site-packages
+for version in ~/Library/Python/*; do
+    path+=$version/lib/python/site-packages
+done
+
+# Setup pyenv dirs
 if type pyenv >/dev/null; then
-    PATH=$(pyenv root)/shims:$(pyenv root)/bin:$PATH
+    path+=$(pyenv root)/shims
+
+    for version in $(pyenv root)/versions/*; do
+        path+=$version/bin/
+    done
 fi
+
 export PATH
 
 # The next line updates PATH for the Google Cloud SDK.
