@@ -80,7 +80,7 @@ plugins=(
   fzf
   tmux
   z
-  osx
+  macos
   appup
   #fasd
   # zsh-sync
