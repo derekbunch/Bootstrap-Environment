@@ -12,6 +12,10 @@ alias q="exit"
 alias quit="exit"
 alias getip="ip a | rg 10.0."
 
+
+#----Beeps shortcuts--------------
+alias beep="osascript -e 'beep'"  # ring 1 time
+
 #----Exa shortcuts--------------
 alias ls="exa --group-directories-first"
 alias l="ls -1"

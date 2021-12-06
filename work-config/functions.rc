@@ -20,7 +20,13 @@ function squashmerge() {
   git merge --squash $target_branch_name
 }
 
-pyenv-brew-relink() {
+function donebeep(){
+    for i in {1..$1}; do
+      osascript -e beep
+    done
+  }
+
+function pyenv-brew-relink() {
   rm -f "$HOME/.pyenv/versions/*-brew"
 
   for i in /usr/local/Cellar/python*/*; do
