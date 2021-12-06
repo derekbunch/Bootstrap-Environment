@@ -83,6 +83,12 @@ alias prmvenv='rm -rf .venv' #'poetry env remove'
 #----Docker shortcuts-----------
 alias dc='docker compose'
 
+#----Google Cloud shortcuts-----------
+alias gc='gcloud'
+
+#----Snowflake shortcuts-----------
+alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql
+
 #-----dbt shortcuts----------
 alias dbt_start="zsh ~/recharge/dbt/main/dbt_start.sh"
 alias dbt_stop="zsh ~/recharge/dbt/main/dbt_stop.sh"
