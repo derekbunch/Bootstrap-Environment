@@ -93,7 +93,9 @@ alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql
 alias dbt_start="zsh ~/recharge/dbt/main/dbt_start.sh"
 alias dbt_stop="zsh ~/recharge/dbt/main/dbt_stop.sh"
 alias dbt_dev="zsh ~/recharge/dbt/main/dbt_dev.sh"
-alias dbt_bare="zsh ~/recharge/dbt/main/dbt_bare.sh"
+alias dbt_main="zsh ~/recharge/dbt/main/dbt_main.sh"
+alias dbt_trim_load="zsh ~/recharge/dbt/trim_load/dbt_trim_load.sh"
+alias dbt_legacy="zsh ~/recharge/dbt/zz_legacy/dbt_legacy.sh"
 
 #-----regex shortcuts----------
 alias awkcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
