@@ -146,6 +146,8 @@ eval "$(direnv hook zsh)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/Bootstrap-Environment/.zsh-theme-gruvbox-material-dark
 
+[[ ! -f ~/recharge/dbt/.data_scripts.sh ]] || source /Users/derekbunch/recharge/dbt/.data_scripts.sh
+
 updatels
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
