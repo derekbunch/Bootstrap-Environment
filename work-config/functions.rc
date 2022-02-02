@@ -20,11 +20,11 @@ function squashmerge() {
   git merge --squash $target_branch_name
 }
 
-function donebeep(){
-    for i in {1..$1}; do
-      osascript -e beep
-    done
-  }
+function donebeep() {
+  for i in {1..$1}; do
+    osascript -e beep
+  done
+}
 
 function pyenv-brew-relink() {
   rm -f "$HOME/.pyenv/versions/*-brew"
@@ -32,4 +32,20 @@ function pyenv-brew-relink() {
   for i in /usr/local/Cellar/python*/*; do
     ln -s $i $HOME/.pyenv/versions/${i##/*/}-brew
   done
+}
+
+function installkube() {
+  brew install kubectl
+  (
+    set -x
+    cd "$(mktemp -d)" &&
+      OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+      ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+      KREW="krew-${OS}_${ARCH}" &&
+      curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+      tar zxvf "${KREW}.tar.gz" &&
+      ./"${KREW}" install krew
+  )
+  kubectl krew install ctx
+  kubectl krew install ns
 }

@@ -12,9 +12,8 @@ alias q="exit"
 alias quit="exit"
 alias getip="ip a | rg 10.0."
 
-
 #----Beeps shortcuts--------------
-alias beep="osascript -e 'beep'"  # ring 1 time
+alias beep="osascript -e 'beep'" # ring 1 time
 
 #----Exa shortcuts--------------
 alias ls="exa --group-directories-first"
@@ -80,8 +79,12 @@ alias pinfo='poetry env info'
 alias pls='poetry env list'
 alias prmvenv='rm -rf .venv' #'poetry env remove'
 
-#----Docker shortcuts-----------
+#----Docker/Kube shortcuts-----------
 alias dc='docker compose'
+alias kube='kubectl'
+alias krew='kubectl krew'
+alias ctx='kubectl-ctx'
+alias ns='kubectl-ns'
 
 #----Google Cloud shortcuts-----------
 alias gc='gcloud'
