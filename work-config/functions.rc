@@ -49,3 +49,57 @@ function installkube() {
   kubectl krew install ctx
   kubectl krew install ns
 }
+
+function gns() {
+  if [ -z "$1" ]; then
+    echo "gns <project>
+
+    Projects:
+      - stage
+      - stage-rq
+      - infra
+      - prod
+      - prod-rq"
+
+    return
+  fi
+
+  case $1 in
+    stage | staging | s)
+      GCP_PROJECT=recharge-stage-services-8e59
+      CLUSTER=staging
+      REGION=us-east4
+      KUBECTX=gke_recharge-stage-services-8e59_us-east4_staging
+      ;;
+    stage-rq | staging-rq | srq)
+      GCP_PROJECT=recharge-stage-services-8e59
+      CLUSTER=staging-rq
+      REGION=us-east4
+      KUBECTX=gke_recharge-stage-services-8e59_us-east4_staging-rq
+      ;;
+    infra | i)
+      GCP_PROJECT=recharge-infra-services-8b42
+      CLUSTER=infra
+      REGION=us-east4
+      KUBECTX=gke_recharge-infra-services-8b42_us-east4_infra
+      ;;
+    prod | p)
+      GCP_PROJECT=recharge-prod-services-f818
+      CLUSTER=prod
+      REGION=us-east4
+      KUBECTX=gke_recharge-prod-services-f818_us-east4_prod
+      ;;
+    prod-rq | prq)
+      GCP_PROJECT=recharge-prod-services-f818
+      CLUSTER=prod-rq
+      REGION=us-east4
+      KUBECTX=gke_recharge-prod-services-f818_us-east4_prod-rq
+      ;;
+  esac
+
+  gcloud config set project $GCP_PROJECT
+
+  if [ -n "$CLUSTER" ]; then
+    gcloud container clusters get-credentials $CLUSTER --region $REGION
+  fi
+}
