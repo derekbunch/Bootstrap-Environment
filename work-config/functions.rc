@@ -65,6 +65,12 @@ function gns() {
   fi
 
   case $1 in
+  test-cc | test-cloudcomposer | testcc)
+    GCP_PROJECT=recharge-stage-services-8e59
+    CLUSTER=us-east4-de-cloud-composer--dcf569c8-gke
+    REGION=us-east4-c
+    KUBECTX=gke_recharge-stage-services-8e59_us-east4-c_us-east4-de-cloud-composer--dcf569c8-gke
+    ;;
   stage-cc | staging-cloudcomposer | scc)
     GCP_PROJECT=recharge-stage-services-8e59
     CLUSTER=us-east4-composer-stage-3d1ed8e9-gke
