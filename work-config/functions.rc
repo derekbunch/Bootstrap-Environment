@@ -55,11 +55,11 @@ function gns() {
     echo "gns <project>
 
     Projects:
+      - stage-cc
+      - prod-cc
       - stage
-      - stage-rq
       - infra
-      - prod
-      - prod-rq"
+      - prod"
 
     return
   fi
