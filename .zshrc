@@ -82,6 +82,7 @@ plugins=(
   z
   macos
   appup
+  asdf
   #fasd
   # zsh-sync
   # poetry
@@ -145,6 +146,9 @@ eval "$(direnv hook zsh)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/Bootstrap-Environment/.zsh-theme-gruvbox-material-dark
+
+# asdf completions
+. /usr/local/opt/asdf/libexec/asdf.sh
 
 [[ ! -f ~/recharge/dbt/.data_scripts.sh ]] || source /Users/derekbunch/recharge/dbt/.data_scripts.sh
 

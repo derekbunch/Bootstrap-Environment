@@ -10,10 +10,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   brew install thefuck
   echo -e "\n${Bold}${Green}Installing fasd${end}"
   brew install fasd
+  echo -e "\n${Bold}${Green}Installing asdf${end}"
+  brew install asdf
   echo -e "\n${Bold}${Green}Installing jq${end}"
   brew install jq
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   is_amazon_linux=$(hostnamectl | grep 'Amazon' | wc -l)
+  # echo -e "\n${Bold}${Green}Installing asdf${end}"
+  # git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
   if (($is_amazon_linux == 1)); then
     echo -e "\n${Bold}${Yellow}OS is Amazon Linux${end}"
     echo -e "\n${Bold}${Green}Installing chsh${end}"
@@ -102,12 +106,6 @@ if (($is_amazon_linux != 1)); then
   (cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fasd/ && make install)
 fi
 
-# Symlink .zshrc
-if test -f ~/.zshrc; then
-  echo -e "\n${Bold}${Blue}Renaming existing .zshrc to .zshrc.orig${end}"
-  mv ~/.zshrc ~/.zshrc.orig
-fi
-
 # read -p "Is this a work device? (y/n): " config_version
 echo -e "\n${Bold}${Blue}Is this a work device?${end}"
 select yn in "Yes" "No"; do
@@ -133,7 +131,12 @@ select yn in "Yes" "No"; do
   esac
 done
 
+# Hardlink .zshrc
+if test -f ~/.zshrc; then
+  echo -e "\n${Bold}${Blue}Renaming existing .zshrc to .zshrc.orig${end}"
+  mv ~/.zshrc ~/.zshrc.orig
+fi
 echo -e "\n${Bold}${Blue}Linking zshrc${end}"
-ln .zshrc ~/.zshrc
+ln ~/Bootstrap-Environment/.zshrc ~/.zshrc
 # echo -e "\n${Bold}Linking p10k config${end}"
 # ln .p10k.zsh ~/.p10k.zsh
