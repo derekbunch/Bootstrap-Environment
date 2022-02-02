@@ -85,6 +85,7 @@ alias kube='kubectl'
 alias krew='kubectl krew'
 alias ctx='kubectl-ctx'
 alias ns='kubectl-ns'
+alias kssh="kubectl node-shell"
 
 #----Google Cloud shortcuts-----------
 alias gc='gcloud'
