@@ -83,6 +83,7 @@ plugins=(
   macos
   appup
   asdf
+  kubectl
   #fasd
   # zsh-sync
   # poetry
