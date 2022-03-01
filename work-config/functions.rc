@@ -52,8 +52,10 @@ function installkube() {
 
 function getsecret() {
   local readonly secret_name=${1:?"What secret would you like to get?"}
-  local secret_key=${2:?"What key (inside the secret) would you like to get?"}
-  kube get secrets $secret_name -o json | jq .data | jq ."\"$secret_key\"" | sed 's/"//g' | base64 --decode
+  local secret_json=$(kube get secrets $secret_name -o json | jq .data)
+  echo "$secret_json"
+  read "secret_key?What key (inside the secret) would you like to get?\n"
+  echo $secret_json | jq ."\"$secret_key\"" | sed 's/"//g' | base64 --decode
 }
 
 function gns() {
