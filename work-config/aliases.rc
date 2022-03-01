@@ -86,7 +86,7 @@ alias krew='kubectl krew'
 alias ctx='kubectl-ctx'
 alias ns='kubectl-ns'
 alias kssh="kubectl node-shell"
-alias ksd='/usr/local/Cellar/ksd/1.0.7/bin/ksd'
+alias decodesecret='/usr/local/Cellar/ksd/1.0.7/bin/ksd'
 
 #----Google Cloud shortcuts-----------
 alias gc='gcloud'
