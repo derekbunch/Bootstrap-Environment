@@ -64,32 +64,32 @@ export ZSH="$HOME/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  colored-man-pages
-  colorize
-  github
-  docker
-  docker-compose
-  virtualenv
-  pip
-  python
-  aws
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-iterm-touchbar
-  fzf
-  tmux
-  z
-  macos
   appup
   asdf
+  aws
+  colored-man-pages
+  colorize
+  docker
+  docker-compose
+  fzf
+  git
+  github
   kubectl
-  #fasd
+  macos
+  pip
+  python
+  terraform
+  tmux
+  virtualenv
+  z
+  zsh-autosuggestions
+  zsh-iterm-touchbar
+  zsh-syntax-highlighting
+  # fasd
   # zsh-sync
   # poetry
   # virtualenvwrapper
   )
-
 ## Source all configs
 if [ -f $HOME/Bootstrap-Environment/personal ]; then
   for file in $HOME/Bootstrap-Environment/personal-config/*.rc; do
