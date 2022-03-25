@@ -19,6 +19,7 @@ if type pyenv >/dev/null; then
     done
 fi
 
+path+=~/.asdf/shims/
 path+=${KREW_ROOT:-$HOME/.krew}/bin
 
 export PATH
