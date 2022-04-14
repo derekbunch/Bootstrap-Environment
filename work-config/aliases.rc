@@ -43,9 +43,6 @@ alias tkillall='tmux kill-session -a'
 alias addgituser='git config --global user.email "derekbunch93@gmail.com"
 git config --global user.name "Derek Bunch"'
 
-#----Terraform shortcuts-----------
-alias tf='terraform'
-
 #----Python shortcuts-----------
 alias py='python3'
 alias pip='py -m pip'
