@@ -64,30 +64,46 @@ export ZSH="$HOME/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  aliases
   appup
   asdf
+  autojump
   aws
   colored-man-pages
   colorize
+  direnv
   docker
   docker-compose
+  fig
   fzf
+  gcloud
   git
   github
+  git-prompt
+  helm
+  iterm2
+  jira
   kubectl
+  kubectx
   macos
   pip
   python
+  poetry
+  pyenv
+  ripgrep
+  sudo
   terraform
   tmux
   virtualenv
+  vscode
   z
   zsh-autosuggestions
   zsh-iterm-touchbar
   zsh-syntax-highlighting
-  # fasd
+  #fasd
+  # globalias
   # zsh-sync
-  # poetry
+  # profiles
   # virtualenvwrapper
   )
 ## Source all configs
