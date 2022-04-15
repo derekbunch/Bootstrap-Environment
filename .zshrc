@@ -1,3 +1,7 @@
+# Fig pre block. Keep at the top of this file.
+export PATH="${PATH}:${HOME}/.local/bin"
+eval "$(fig init zsh pre)"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -95,7 +99,6 @@ plugins=(
   terraform
   tmux
   virtualenv
-  vscode
   z
   zsh-autosuggestions
   zsh-iterm-touchbar
@@ -106,6 +109,7 @@ plugins=(
   # profiles
   # virtualenvwrapper
   )
+
 ## Source all configs
 if [ -f $HOME/Bootstrap-Environment/personal ]; then
   for file in $HOME/Bootstrap-Environment/personal-config/*.rc; do
@@ -167,9 +171,14 @@ source ~/Bootstrap-Environment/.zsh-theme-gruvbox-material-dark
 # asdf completions
 . /usr/local/opt/asdf/libexec/asdf.sh
 
-[[ ! -f ~/recharge/dbt/.data_scripts.sh ]] || source /Users/derekbunch/recharge/dbt/.data_scripts.sh
+[[ ! -f ~/recharge/dbt/.data_scripts.sh ]] || source "${HOME}"/recharge/dbt/.data_scripts.sh
 
 updatels
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/vault vault
+
+# Fig post block. Keep at the bottom of this file.
+eval "$(fig init zsh post)"
 
