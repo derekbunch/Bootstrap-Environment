@@ -60,7 +60,7 @@ zstyle ':completion:*' list-colors "=(#b) #([0-9]#)*=36=31"
 #zstyle ':completion:*' hosts off
 
 # unsetopt LIST_AMBIGUOUS
-setopt  COMPLETE_IN_WORD
+setopt COMPLETE_IN_WORD
 
 # Separate man page sections.  Neat.
 zstyle ':completion:*:manuals' separate-sections true
@@ -73,7 +73,7 @@ zstyle ':completion:*:windows' menu on=0
 zstyle ':completion:*:expand:*' tag-order all-expansions
 
 # more errors allowed for large words and fewer for small words
-zstyle ':completion:*:approximate:*' max-errors "reply=(  $((  ($#PREFIX+$#SUFFIX)/3  ))  )"
+zstyle ':completion:*:approximate:*' max-errors "reply=(  $((($#PREFIX + $#SUFFIX) / 3))  )"
 
 # Errors format
 zstyle ':completion:*:corrections' format '%B%d (errors %e)%b'
@@ -85,6 +85,10 @@ zstyle ':completion::*:(rm|vi):*' ignore-line true
 zstyle ':completion:*' ignore-parents parent pwd
 
 zstyle ':completion::approximate*:*' prefix-needed false
+
+# Docker option stacking
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 ### Key bindings ###
 
 # Who doesn't want home and end to work?
@@ -115,10 +119,10 @@ bindkey '\e[D' backward-char
 bindkey '\eOC' forward-char
 bindkey '\eOD' backward-char
 
-bindkey "5C" emacs-forward-word   #control left
-bindkey "5D" backward-word        #control right
+bindkey "5C" emacs-forward-word #control left
+bindkey "5D" backward-word      #control right
 
-bindkey "^[[A" history-search-backward  # Search history with up arrow
+bindkey "^[[A" history-search-backward # Search history with up arrow
 bindkey "^[[B" history-search-forward  # Search history with up arrow
 
 # bindkey "^[[3~"   delete-char # delete keys
