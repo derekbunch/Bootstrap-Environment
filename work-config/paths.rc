@@ -12,6 +12,7 @@ done
 
 # Setup pyenv dirs
 if type pyenv >/dev/null; then
+    path+=$(pyenv root)/bin
     path+=$(pyenv root)/shims
 
     for version in $(pyenv root)/versions/*; do
@@ -21,6 +22,7 @@ fi
 
 path+=~/.asdf/shims/
 path+=${KREW_ROOT:-$HOME/.krew}/bin
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 
 export PATH
 

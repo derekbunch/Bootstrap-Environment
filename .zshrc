@@ -151,7 +151,7 @@ compinit
 _comp_options+=(globdots)
 eval "$(ssh-agent -s)" &>/dev/null
 eval "$(direnv hook zsh)"
-
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 
 #--Zsh Sync Config----
 #ZSH_SYNC_REMOTE=
@@ -182,3 +182,23 @@ complete -o nospace -C /usr/local/bin/vault vault
 # Fig post block. Keep at the bottom of this file.
 eval "$(fig init zsh post)"
 
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"

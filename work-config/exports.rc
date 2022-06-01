@@ -7,6 +7,7 @@ export QMK_HOME=~/.qmk_firmware
 export NVM_DIR="$HOME/.nvm"
 export TOUCHBAR_GIT_ENABLED=true
 export VSCODE=code-insiders
+export PYENV_ROOT="$HOME/.pyenv"
 
 #---- Recharge --------------
 export CLOUDSDK_PYTHON=python3

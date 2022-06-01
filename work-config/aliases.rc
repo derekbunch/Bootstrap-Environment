@@ -52,15 +52,17 @@ if type pyenv >/dev/null; then
     eval "$(pyenv init -)"
 fi
 alias pyenv_fetch='ln -s $(brew --cellar)/python*/* ~/.pyenv/versions/'
+alias rmvenv='pyenv virtualenv-delete'
+alias pexit='source deactivate'
 alias pdb='python -m debugpy'
 alias ipy="pip3 install ipython &> /dev/null && python3 -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 
 #----VirtualEnv shortcuts-----------
 # source /usr/local/bin/virtualenvwrapper.sh
-alias mkvenv='mkvirtualenv'
-alias rmvenv='rmvirtualenv'
-alias lsvenv='lsvirtualenv'
-alias workondata='workon SpyCloud'
+# alias mkvenv='mkvirtualenv'
+# alias rmvenv='rmvirtualenv'
+# alias lsvenv='lsvirtualenv'
+# alias workondata='workon SpyCloud'
 
 #----Poetry shortcuts-----------
 # source $HOME/.poetry/env

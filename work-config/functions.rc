@@ -1,7 +1,10 @@
 #----Functions-------------------
-function countfiles() {
-  readonly filetype=${1:?"Please provide a filetype"}
-  find . -type f -name \*.$filetype | wc -l
+function pyenv-venv() {
+  pyenv virtualenv "$1.$(get_latest_version $1)" $2
+}
+
+function get_latest_version() {
+  echo $(pyenv install -l | grep -Eo "$1.*" | cut -d . -f 3 | sort -nr | head -1)
 }
 
 function openrc() {
@@ -88,9 +91,9 @@ function gns() {
     ;;
   de-cc | de-cloudcomposer | decc)
     GCP_PROJECT=recharge-stage-services-8e59
-    CLUSTER=us-east4-data-eng-composer--dc8904fd-gke
+    CLUSTER=us-east4-data-engineering-c-2c6a66ab-gke
     REGION=us-east4
-    KUBECTX=gke_recharge-stage-services-8e59_us-east4_us-east4-data-eng-composer--dc8904fd-gke
+    KUBECTX=gke_recharge-stage-services-8e59_us-east4_us-east4-data-engineering-c-2c6a66ab-gke
     ;;
   prod-cloudcomposer | pcc)
     GCP_PROJECT=recharge-prod-services-f818
@@ -123,4 +126,9 @@ function gns() {
   if [ -n "$CLUSTER" ]; then
     gcloud container clusters get-credentials $CLUSTER --region $REGION
   fi
+}
+
+function countfiles() {
+  readonly filetype=${1:?"Please provide a filetype"}
+  find . -type f -name \*.$filetype | wc -l
 }
