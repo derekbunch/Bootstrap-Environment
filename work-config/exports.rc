@@ -11,5 +11,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 
 #---- Recharge --------------
 export CLOUDSDK_PYTHON=python3
-export VAULT_ADDR=https://vault.rechargeapps.net:8200
+export VAULT_ADDR="https://vault.infra.rechargeapps.net"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
