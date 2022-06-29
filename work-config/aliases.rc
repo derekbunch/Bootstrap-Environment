@@ -89,6 +89,7 @@ alias decodesecret='/usr/local/Cellar/ksd/1.0.7/bin/ksd'
 
 #----Google Cloud shortcuts-----------
 alias gc='gcloud'
+alias gal='gcloud auth login --update-adc'
 
 #----Snowflake shortcuts-----------
 alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql
