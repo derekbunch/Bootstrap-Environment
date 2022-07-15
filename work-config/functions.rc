@@ -39,7 +39,7 @@ function pyenv-brew-relink() {
 
 function getdbcreds() {
   readonly env=${1:-stage}
-  local creds_object=$(vault read database/mysql/prod/customcheckout/creds/mysql_read -format=json)
+  local creds_object=$(vault read database/mysql/$env/customcheckout/creds/mysql_read -format=json)
   local un=$(echo $creds_object | jq -r .data.username)
   local pw=$(echo $creds_object | jq -r .data.password)
   echo "Username: $un"
