@@ -37,6 +37,15 @@ function pyenv-brew-relink() {
   done
 }
 
+function getdbcreds() {
+  local creds_object=$(vault read database/mysql/stage/customcheckout/creds/mysql_read -format=json)
+  local un=$(echo $creds_object | jq -r .data.username)
+  local pw=$(echo $creds_object | jq -r .data.password)
+  echo "Username: $un"
+  echo "Password: $pw"
+  echo -e "$un\n$pw" | pbcopy
+}
+
 function installkube() {
   brew install kubectl
   (
