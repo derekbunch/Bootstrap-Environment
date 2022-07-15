@@ -44,7 +44,7 @@ function getdbcreds() {
   local pw=$(echo $creds_object | jq -r .data.password)
   echo "Username: $un"
   echo "Password: $pw"
-  echo -e "$un\n$pw" | pbcopy
+  echo -n "$un $pw" | pbcopy
 }
 
 function installkube() {
