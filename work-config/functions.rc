@@ -66,13 +66,11 @@ function installkube() {
 function getsecret() {
   local readonly secret_name=${1:?"What secret would you like to get?"}
   local secret_json=$(kube get secrets $secret_name -o json | jq .data)
-  # echo "$secret_json"
   echo "What key (inside the secret) would you like to get?"
   select secret_key in $(echo "$secret_json" | jq -rc keys | tr -d '[]'); do
     echo "$secret_json" | jq -r ".$secret_key" | base64 --decode
     break
   done
-  # read REPLY
 }
 
 gns() {
