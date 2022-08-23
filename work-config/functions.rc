@@ -64,8 +64,14 @@ function installkube() {
 }
 
 function getsecret() {
+  local namespace=""
+  while getopts ':su:' arg; do
+    case $arg in
+    n) namespace="--namespace $USER" ;;
+    esac
+  done
   local readonly secret_name=${1:?"What secret would you like to get?"}
-  local secret_json=$(kube get secrets $secret_name -o json | jq .data)
+  local secret_json=$(kube get secrets $secret_name $namespace -o json | jq .data)
   echo "What key (inside the secret) would you like to get?"
   select secret_key in $(echo "$secret_json" | jq -rc keys | tr -d '[]'); do
     echo "$secret_json" | jq -r ".$secret_key" | base64 --decode
