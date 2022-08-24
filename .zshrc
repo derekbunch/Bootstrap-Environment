@@ -170,6 +170,7 @@ source ~/Bootstrap-Environment/.zsh-theme-gruvbox-material-dark
 . /usr/local/opt/asdf/libexec/asdf.sh
 
 [[ ! -f ~/recharge/dbt/.data_scripts.sh ]] || source "${HOME}"/recharge/dbt/.data_scripts.sh
+[[ ! -f "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autoenv" ]] || source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autoenv"
 
 updatels
 

@@ -66,6 +66,10 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 echo -e "\n${Bold}${Green}Installing Zsh Sync${end}"
 git clone https://github.com/vickyliin/zsh-sync.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-sync
 
+# zsh-autoenv
+echo -e "\n${Bold}${Green}Installing zsh-autoenv${end}"
+git clone https://github.com/Tarrasch/zsh-autoenv ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autoenv
+
 # vi-mode
 echo -e "\n${Bold}${Green}Installing vi-mode${end}"
 git clone --depth=1 https://github.com/woefe/vi-mode.zsh ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/vi-mode.zsh
