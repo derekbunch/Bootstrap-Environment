@@ -70,6 +70,9 @@ git clone https://github.com/vickyliin/zsh-sync.git ${ZSH_CUSTOM:-~/.oh-my-zsh/c
 echo -e "\n${Bold}${Green}Installing zsh-autoenv${end}"
 git clone https://github.com/Tarrasch/zsh-autoenv ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autoenv
 
+echo -e "\n${Bold}${Green}Installing zsh-autopair${end}"
+git clone https://github.com/hlissner/zsh-autopair ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autopair
+
 # vi-mode
 echo -e "\n${Bold}${Green}Installing vi-mode${end}"
 git clone --depth=1 https://github.com/woefe/vi-mode.zsh ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/vi-mode.zsh
