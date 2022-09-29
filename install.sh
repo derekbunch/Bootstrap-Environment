@@ -86,12 +86,22 @@ echo -e "\n${Bold}${Green}Installing Z${end}"
 curl -sSL https://raw.githubusercontent.com/rupa/z/master/z.sh >${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/z.sh
 
 # Tmux Plugin Manager
+echo -e "\n${Bold}${Green}Installing Tmux Plugin Manager${end}"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # fzf
 echo -e "\n${Bold}${Green}Installing fzf${end}"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --no-key-bindings --no-update-rc --completion
+
+# interactive kube exec
+echo -e "\n${Bold}${Green}Installing kube iexec${end}"
+local TAG=$(curl -s https://api.github.com/repos/gabeduke/kubectl-iexec/releases/latest | jq -r .tag_name)
+curl -LO https://github.com/gabeduke/kubectl-iexec/releases/download/${TAG}/kubectl-iexec_${TAG}_Darwin_x86_64.tar.gz
+mkdir -p /tmp/kubectl-iexec
+tar -xzvf kubectl-iexec_${TAG}_Darwin_x86_64.tar.gz -C /tmp/kubectl-iexec
+chmod +x /tmp/kubectl-iexec/kubectl-iexec
+sudo mv /tmp/kubectl-iexec/kubectl-iexec /usr/local/bin
 
 # vimrc
 echo -e "\n${Bold}${Green}Installing awesome vimrc${end}"
