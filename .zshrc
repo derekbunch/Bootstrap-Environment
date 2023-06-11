@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -82,6 +80,7 @@ plugins=(
   git
   github
   git-prompt
+  golang
   helm
   iterm2
   jira
@@ -144,7 +143,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 fpath+=~/.zfunc
-autoload -U +X compinit compdef
+autoload -Uz +X compinit compdef
 compinit
 _comp_options+=(globdots)
 eval "$(ssh-agent -s)" &>/dev/null
@@ -166,8 +165,6 @@ eval "$(pyenv init -)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/Bootstrap-Environment/.zsh-theme-gruvbox-material-dark
 
-# asdf completions
-. /usr/local/opt/asdf/libexec/asdf.sh
 
 [[ ! -f ~/recharge/dbt/.data_scripts.sh ]] || source "${HOME}"/recharge/dbt/.data_scripts.sh
 [[ ! -f "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autoenv/autoenv.zsh" ]] || source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autoenv/autoenv.zsh"
@@ -179,6 +176,3 @@ updatels
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"

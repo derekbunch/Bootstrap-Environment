@@ -41,6 +41,20 @@ getdbcreds() {
   echo -n "$un $pw" | pbcopy
 }
 
+getdbusername() {
+  readonly env=${1:-stage}
+  local creds_object=$(vault read database/mysql/$env/customcheckout/creds/mysql_read -format=json)
+  local un=$(echo $creds_object | jq -r .data.username)
+  echo $un
+}
+
+getdbpassword() {
+  readonly env=${1:-stage}
+  local creds_object=$(vault read database/mysql/$env/customcheckout/creds/mysql_read -format=json)
+  local pw=$(echo $creds_object | jq -r .data.password)
+  echo $pw
+}
+
 installkube() {
   brew install kubectl
   (

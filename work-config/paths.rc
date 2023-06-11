@@ -24,6 +24,9 @@ path+=~/.asdf/shims/
 path+=${KREW_ROOT:-$HOME/.krew}/bin
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 
+# Add GOBIN to path
+path+=~/go/bin
+
 export PATH
 
 # The next line updates PATH for the Google Cloud SDK.
