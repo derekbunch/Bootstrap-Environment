@@ -1,5 +1,5 @@
 work
 personal
 .vscode
-local.rc
+**/local.rc
 exa-*
