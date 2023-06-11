@@ -17,7 +17,7 @@ alias pip='py -m pip'
 alias changepython3version='sudo update-alternatives --config python3'
 
 #----Docker shortcuts-----------
-alias dc='docker-compose'
+alias dc='docker compose'
 
 # #----Django shortcuts-----------
 # alias runserver='python manage.py runserver'
