@@ -5,6 +5,13 @@ function openrc() {
   code-insiders ~/Bootstrap-Environment/personal-config/${rc_file}
 }
 
+function openrcv() {
+  readonly filename=${1:?"Which rc file would you like to open?"}
+  rc_file=${filename}'.rc'
+  vim ~/Bootstrap-Environment/personal-config/${rc_file}
+}
+
+
 function countfiles() {
   readonly filetype=${1:?"Please provide a filetype"}
   find . -type f -name \*.$filetype | wc -l

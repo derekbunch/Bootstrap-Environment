@@ -1,5 +1,6 @@
 alias refreshzsh='source ~/.zshrc'
 alias openzshrc='code-insiders ~/.zshrc'
+alias opnzshrcv="vim ~/.zshrc"
 alias grep='grep --color'
 alias t='tail -f'
 alias vsc='code-insiders'
@@ -41,6 +42,33 @@ alias pinfo='poetry env info'
 alias pls='poetry env list'
 alias prmvenv='rm -rf .venv' #'poetry env remove'
 
-#-----regex shortcuts----------
-alias findcreates=awk '/CREATE TABLE/ && !a[$3]++{print $3}'
-alias findinserts=awk '/INSERT INTO/ && !a[$3]++{print $3}'
+#----Exa shortcuts--------------
+alias ls="exa --group-directories-first"
+alias l="ls -1"
+alias la="l -a"
+alias ll="ls -lh --git"
+alias llg="ll --grid"
+alias lt="ls -T"
+alias llt="ll -T"
+alias lsize='exa --group-directories-first -alh -s=size'
+alias updatels='alias ls="exa --group-directories-first"
+                alias l="ls -1"
+                alias la="l -a"
+                alias ll="ls -lh --git"
+                alias llg="ll --grid"
+                alias lt="ls -T"
+                alias llt="ll -T"'
+
+#----tmux shortcuts-----------
+alias tl='tmux ls'
+alias ta='tmux a -t'
+alias tnew='tmux new -s'
+alias tkill='tmux kill-session -t'
+alias tkillall='tmux kill-session -a'
+
+#----zerotier shortcuts-----------
+alias zt="sudo zerotier-cli"
+
+# #-----regex shortcuts----------
+# alias findcreates=awk '/CREATE TABLE/ && !a[$3]++{print $3}'
+# alias findinserts=awk '/INSERT INTO/ && !a[$3]++{print $3}'
