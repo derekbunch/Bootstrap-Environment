@@ -23,5 +23,20 @@ function lsgrep() {
 function tar_progress() {
   local tar_file=${1:?"Please provide a tar file to write to"}
   local folder=${2:?"Please provide files to tar"}
-  tar cf - $folder -P | pv -s $(du -sb $folder | awk '{print $1}') | gzip >"$tar_file"
+  tar cf - $folder -P | pv -s $(du -sb $folder | awk '{print $1}') | pigz >"$tar_file"
+}
+
+function syncrom() {
+  local rom_file=${1:?"Please provide ROM files"}
+  # local is_update=${2:-false}
+  # if [ "$is_update" != false ]; then
+  if [[ $rom_file =~ '\[v0\]' ]]; then
+    rom_path="~/sdcard/Emulation/roms/switch"
+  else
+    rom_path="~/sdcard/switch_updates"
+  fi
+  echo "Running -> rsync -chazvP $rom_file roms:$rom_path"
+  echo
+  sleep 2
+  rsync -chazvP $rom_file roms:$rom_path
 }
