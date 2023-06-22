@@ -43,7 +43,7 @@ function syncrom() {
   else
     echo "Update file detected, moving to updates folder..."
     echo
-    rom_path="~/sdcard/switch_updates"
+    rom_path="~/switch_updates"
   fi
 
   echo "Running -> rsync -chazvP $rom_file roms:$rom_path"
