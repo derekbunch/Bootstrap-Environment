@@ -88,6 +88,7 @@ curl -sSL https://raw.githubusercontent.com/rupa/z/master/z.sh >${ZSH_CUSTOM:-$H
 # Tmux Plugin Manager
 echo -e "\n${Bold}${Green}Installing Tmux Plugin Manager${end}"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+ln .tmux.conf ~/.tmux.conf
 
 # fzf
 echo -e "\n${Bold}${Green}Installing fzf${end}"
@@ -131,7 +132,6 @@ select yn in "Yes" "No"; do
     echo -e "\n${Bold}${Yellow}Using work config${end}"
     touch work
     echo -e "\n${Bold}${Blue}Linking tmuxrc${end}"
-    ln work-config/.tmux.conf ~/.tmux.conf
     echo -e "\n${Bold}${Blue}Linking workspace config${end}"
     ln -s ~/Bootstrap-Environment/work-config/myparsing.code-workspace /mnt/data/input/
     git clone "https://derekbunch:$gh_token@github.com/derekbunch/parsing_scripts.git" /mnt/data/input/scripts
@@ -142,7 +142,6 @@ select yn in "Yes" "No"; do
     echo -e "\n${Bold}${Yellow}Using personal config${end}"
     touch personal
     echo -e "\n${Bold}${Blue}Linking tmuxrc${end}"
-    ln personal-config/.tmux.conf ~/.tmux.conf
     break
     ;;
   esac
