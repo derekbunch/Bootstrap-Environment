@@ -28,13 +28,24 @@ function tar_progress() {
 
 function syncrom() {
   local rom_file=${1:?"Please provide ROM files"}
-  # local is_update=${2:-false}
-  # if [ "$is_update" != false ]; then
+  # Detect if NSZ file and decompress
+  if [[ $rom_file =~ '.*\.nsz' ]]; then
+    echo "NSZ file detected, decompressing..."
+    nsz -DVw $rom_file
+    rom_file=${rom_file%.nsz}.nsp
+    echo "NSP file created: $rom_file"
+  fi
+  # Separate ROMs from updates for ROM Manager
   if [[ $rom_file =~ '\[v0\]' ]]; then
+    echo "Base ROM file detected, moving to roms folder..."
+    echo
     rom_path="~/sdcard/Emulation/roms/switch"
   else
+    echo "Update file detected, moving to updates folder..."
+    echo
     rom_path="~/sdcard/switch_updates"
   fi
+
   echo "Running -> rsync -chazvP $rom_file roms:$rom_path"
   echo
   sleep 2
