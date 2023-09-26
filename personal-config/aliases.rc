@@ -1,6 +1,6 @@
 alias refreshzsh='source ~/.zshrc'
 alias openzshrc='code-insiders ~/.zshrc'
-alias opnzshrcv="vim ~/.zshrc"
+alias openzshrcv="vim ~/.zshrc"
 alias grep='grep --color'
 alias t='tail -f'
 alias vsc='code-insiders'
@@ -10,6 +10,7 @@ alias bootstrapenv="echo 'git clone https://github.com/derekbunch/Bootstrap-Envi
 alias c="clear"
 alias q="exit"
 alias quit="exit"
+alias getip="curl zx2c4.com/ip"
 
 #----Python shortcuts-----------
 alias py='python3'
@@ -66,6 +67,9 @@ alias ta='tmux a -t'
 alias tnew='tmux new -s'
 alias tkill='tmux kill-session -t'
 alias tkillall='tmux kill-session -a'
+
+#----vim shortcuts-----------
+alias vim='nvim'
 
 #----zerotier shortcuts-----------
 alias zt="sudo zerotier-cli"
