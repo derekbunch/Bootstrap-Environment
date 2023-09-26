@@ -1,5 +1,6 @@
 alias refreshzsh='source ~/.zshrc'
 alias openzshrc='code-insiders ~/.zshrc'
+alias openzshrcv='vim ~/.zshrc'
 alias grep='grep --color'
 alias t='tail -f'
 alias vsc='code-insiders'
@@ -11,6 +12,7 @@ alias c="clear"
 alias q="exit"
 alias quit="exit"
 alias getip="ip a | rg 10.0."
+alias getpubip="curl zx2c4.com/ip"
 
 #----Beeps shortcuts--------------
 alias beep="osascript -e 'beep'" # ring 1 time
@@ -31,6 +33,9 @@ alias updatels='alias ls="exa --group-directories-first"
                 alias llg="ll --grid"
                 alias lt="ls -T"
                 alias llt="ll -T"'
+
+#----neovim shortcuts-----------
+alias vim='nvim'
 
 #----tmux shortcuts-----------
 alias tl='tmux ls'

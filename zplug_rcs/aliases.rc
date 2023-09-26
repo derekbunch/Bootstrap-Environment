@@ -1,0 +1,180 @@
+#================================================
+# *               Zsh Management
+#================================================
+alias refreshzsh='source ~/.zplug/init.zsh'
+alias openzshrc='code-insiders ~/.zshrc'
+alias opnzshrcv="vim ~/.zshrc"
+#------------------------------------------------
+
+#================================================
+# *               General
+#================================================
+alias grep='grep --color'
+alias t='tail -f'
+alias vsc='code-insiders'
+alias sshfingerprint='ssh-keygen -l -E md5 -f '
+alias bootstrapenv="echo 'git clone https://github.com/derekbunch/Bootstrap-Environment.git ~/Bootstrap-Environment && cd Bootstrap-Environment/ && chmod +x install.sh && ./install.sh' | pbcopy"
+alias wcl='wc -l ./* | sort -nr'
+alias c="clear"
+alias q="exit"
+alias quit="exit"
+#------------------------------------------------
+
+#================================================
+# *               Exa
+#================================================
+if type "exa" >/dev/null; then
+    alias ls="exa --group-directories-first"
+    alias l="ls -1"
+    alias la="l -a"
+    alias lsa='ls -a'
+    alias ll="ls -lh --git"
+    alias llg="ll --grid"
+    alias lt="ls -T"
+    alias llt="ll -T"
+    alias dirsize='du -sh * | sort -nr'
+    alias lsize='exa --group-directories-first -alh -s=size'
+    alias updatels='alias ls="exa --group-directories-first"
+                    alias l="ls -1"
+                    alias la="l -a"
+                    alias ll="ls -lh --git"
+                    alias llg="ll --grid"
+                    alias lt="ls -T"
+                    alias llt="ll -T"'
+fi
+#------------------------------------------------
+
+#================================================
+# *               Tmux
+#================================================
+if type "tmux" >/dev/null; then
+    alias tl='tmux ls'
+    alias ta='tmux a -t'
+    alias tnew='tmux new -s'
+    alias tkill='tmux kill-session -t'
+    alias tkillall='tmux kill-session -a'
+fi
+#------------------------------------------------
+
+#================================================
+# *               Git
+#================================================
+alias addgituser='git config --global user.email "derekbunch93@gmail.com"
+git config --global user.name "Derek Bunch"'
+#------------------------------------------------
+
+#================================================
+# *               Python
+#================================================
+alias py='python3'
+alias pip='py -m pip'
+alias changepython3version='sudo update-alternatives --config python3'
+# Start Pyenv
+if type pyenv >/dev/null; then
+    eval "$(pyenv init -)"
+fi
+alias pyenv_fetch='ln -s $(brew --cellar)/python*/* ~/.pyenv/versions/'
+alias rmvenv='pyenv virtualenv-delete'
+alias pexit='source deactivate'
+alias pdb='python -m debugpy'
+alias ipy="pip3 install ipython &> /dev/null && python3 -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+#------------------------------------------------
+
+#================================================
+# *               Poetry
+#================================================
+if type "poetry" >/dev/null; then
+    # source $HOME/.poetry/env
+    alias pshell='poetry shell'
+    alias pupdate='poetry update'
+    alias pinstall='poetry install'
+    alias penv3_9='poetry env use /usr/local/opt/python@3.9/bin/python3.9 && pinstall && pshell'
+    alias penv3_8='poetry env use /usr/local/opt/python@3.8/bin/python3.8 && pinstall && pshell'
+    alias padd='poetry add'
+    alias prem='poetry remove'
+    alias prun='poetry run'
+    alias pinfo='poetry env info'
+    alias pls='poetry env list'
+    alias prmvenv='rm -rf .venv' #'poetry env remove'
+fi
+#------------------------------------------------
+
+#================================================
+# *               Docker/Kube
+#================================================
+if type "docker" >/dev/null; then
+    alias dc='docker compose'
+fi
+if type "kubectl" >/dev/null; then
+    alias kube='kubectl'
+    alias krew='kubectl krew'
+    alias ctx='kubectl-ctx'
+    alias ns='kubectl-ns'
+    alias kssh="kubectl node-shell"
+    alias decodesecret='/usr/local/Cellar/ksd/1.0.7/bin/ksd'
+fi
+#------------------------------------------------
+
+#================================================
+# *               Google Cloud
+#================================================
+if type "gcloud" >/dev/null; then
+    alias gc='gcloud'
+    alias gal='gcloud auth login --update-adc'
+    alias authed='gcloud container clusters list'
+fi
+#------------------------------------------------
+
+#================================================
+# *               Snowflake
+#================================================
+alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql
+#------------------------------------------------
+
+#================================================
+# *               Regex
+#================================================
+alias awkcreates='awk "/CREATE TABLE/ && !a[$3]++{print $3}"'
+alias awkinserts='awk "/INSERT INTO/ && !a[$3]++{print $3}"'
+alias rgcreate="rg -i 'CREATE TABLE \`.*\`'"
+alias rginsert="rg -i 'INSERT INTO \`.*\`'"
+#------------------------------------------------
+
+#================================================
+# *               Linux Specific
+#================================================
+if [ $OSTYPE == 'linux' ]; then
+    alias getip="ip a | rg 10.0."
+    alias getip2="ip a | rg 192.168."
+    alias getpubip="curl zx2c4.com/ip"
+fi
+#------------------------------------------------
+
+#================================================
+# *               Mac Specific
+#================================================
+if [ $OSTYPE == 'darwin' ]; then
+    alias beep="osascript -e 'beep'" # ring 1 time
+fi
+#------------------------------------------------
+
+#================================================
+# *               Unused
+#================================================
+if [ 'a' == 'b']; then
+    #  ----VirtualEnv shortcuts-----------
+    # source /usr/local/bin/virtualenvwrapper.sh
+    # alias mkvenv='mkvirtualenv'
+    # alias rmvenv='rmvirtualenv'
+    # alias lsvenv='lsvirtualenv'
+    # alias workondata='workon SpyCloud'
+
+    #  ----Django shortcuts-----------
+    # alias runserver='python manage.py runserver'
+    # alias makem='python manage.py makemigrations && python manage.py migrate'
+
+    # #  -----parsing shortcuts----------
+    # alias emails='grep -irhEo "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" . | sort -u > unique-email.txt'
+    # alias bk="mkdir _files && cp * _files"
+fi
+#------------------------------------------------

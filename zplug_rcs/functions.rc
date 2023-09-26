@@ -1,0 +1,192 @@
+#================================================
+# *               Functions
+#================================================
+pyenv-venv() {
+  pyenv virtualenv "$1.$(get_latest_version $1)" $2
+}
+
+pyenv-brew-relink() {
+  rm -f "$HOME/.pyenv/versions/*-brew"
+
+  for i in /usr/local/Cellar/python*/*; do
+    ln -s $i $HOME/.pyenv/versions/${i##/*/}-brew
+  done
+}
+
+get_latest_version() {
+  echo $(pyenv install -l | grep -Eo "$1.*" | cut -d . -f 3 | sort -nr | head -1)
+}
+
+openrc() {
+  readonly filename=${1:?"Which rc file would you like to open?"}
+  rc_file=${filename}'.rc'
+  if [ "$2" == 'vim' ]; then
+    vim ~/Bootstrap-Environment/work-config/${rc_file}
+  else
+    code-insiders ~/Bootstrap-Environment/work-config/${rc_file}
+  fi
+}
+
+openrcv() {
+  readonly filename=${1:?"Which rc file would you like to open?"}
+  rc_file=${filename}'.rc'
+  vim ~/Bootstrap-Environment/personal-config/${rc_file}
+}
+
+squash() {
+  readonly commits=${1:?"How many commits back would you like to squash?"}
+  git rebase -i HEAD~$commits
+}
+
+squashmerge() {
+  readonly target_branch_name=${1:?"Which branch would like to merge?"}
+  git merge --squash $target_branch_name
+}
+#------------------------------------------------
+
+#================================================
+# *               Personal Only
+#================================================
+if [ -f $HOME/Bootstrap-Environment/personal ]; then
+  tar_progress() {
+    local tar_file=${1:?"Please provide a tar file to write to"}
+    local folder=${2:?"Please provide files to tar"}
+    tar cf - $folder -P | pv -s $(du -sb $folder | awk '{print $1}') | gzip >"$tar_file"
+  }
+
+  countfiles() {
+    readonly filetype=${1:?"Please provide a filetype"}
+    find . -type f -name \*.$filetype | wc -l
+  }
+fi
+#------------------------------------------------
+
+#================================================
+# *               Work Only
+#================================================
+if [ -f $HOME/Bootstrap-Environment/work ]; then
+  getdbcreds() {
+    readonly env=${1:-stage}
+    local creds_object=$(vault read database/mysql/$env/customcheckout/creds/mysql_read -format=json)
+    local un=$(echo $creds_object | jq -r .data.username)
+    local pw=$(echo $creds_object | jq -r .data.password)
+    echo "Username: $un"
+    echo "Password: $pw"
+    echo -n "$un $pw" | pbcopy
+  }
+
+  getdbusername() {
+    readonly env=${1:-stage}
+    local creds_object=$(vault read database/mysql/$env/customcheckout/creds/mysql_read -format=json)
+    local un=$(echo $creds_object | jq -r .data.username)
+    echo $un
+  }
+
+  getdbpassword() {
+    readonly env=${1:-stage}
+    local creds_object=$(vault read database/mysql/$env/customcheckout/creds/mysql_read -format=json)
+    local pw=$(echo $creds_object | jq -r .data.password)
+    echo $pw
+  }
+
+  installkube() {
+    brew install kubectl
+    (
+      set -x
+      cd "$(mktemp -d)" &&
+        OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+        ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+        KREW="krew-${OS}_${ARCH}" &&
+        curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+        tar zxvf "${KREW}.tar.gz" &&
+        ./"${KREW}" install krew
+    )
+    kubectl krew install ctx
+    kubectl krew install ns
+  }
+
+  getsecret() {
+    local namespace=""
+    while getopts ':su:' arg; do
+      case $arg in
+      n) namespace="--namespace $USER" ;;
+      esac
+    done
+    local readonly secret_name=${1:?"What secret would you like to get?"}
+    local secret_json=$(kube get secrets $secret_name $namespace -o json | jq .data)
+    echo "What key (inside the secret) would you like to get?"
+    select secret_key in $(echo "$secret_json" | jq -rc keys | tr -d '[]'); do
+      echo "$secret_json" | jq -r ".$secret_key" | base64 --decode
+      break
+    done
+  }
+
+  gns() {
+    if [ -z "$1" ]; then
+      echo "gns <project>
+
+  Allows for easy gcloud config and k8s context switching.
+
+    Projects:
+      - de-cc    (Composer V2)
+      - stage-cc (Composer V1)
+      - prod-cc  (Prod Composer V1)
+      - stage    (Recharge Stage)
+      - infra    (Recharge Infra)
+      - prod     (Recharge Prod)"
+      return
+    fi
+
+    case $1 in
+    stage-cc | staging-cloudcomposer | scc)
+      GCP_PROJECT=recharge-stage-services-8e59
+      CLUSTER=us-east4-data-engineering-c-78114104-gke
+      REGION=us-east4
+      KUBECTX=gke_recharge-stage-services-8e59_us-east4_us-east4-data-engineering-c-78114104-gke
+      ;;
+    prod-cc | prod-cloudcomposer | pcc)
+      GCP_PROJECT=recharge-prod-services-f818
+      CLUSTER=us-east4-data-engineering-c-51fa0ed8-gke
+      REGION=us-east4
+      KUBECTX=gke_recharge-prod-services-f818_us-east4_us-east4-data-engineering-c-51fa0ed8-gke
+      ;;
+    stage | staging | s)
+      GCP_PROJECT=recharge-stage-services-8e59
+      CLUSTER=staging
+      REGION=us-east4
+      KUBECTX=gke_recharge-stage-services-8e59_us-east4_staging
+      ;;
+    infra | i)
+      GCP_PROJECT=recharge-infra-services-8b42
+      CLUSTER=infra
+      REGION=us-east4
+      KUBECTX=gke_recharge-infra-services-8b42_us-east4_infra
+      ;;
+    prod | p)
+      GCP_PROJECT=recharge-prod-services-f818
+      CLUSTER=prod
+      REGION=us-east4
+      KUBECTX=gke_recharge-prod-services-f818_us-east4_prod
+      ;;
+    esac
+
+    gcloud config set project $GCP_PROJECT
+
+    if [ -n "$CLUSTER" ]; then
+      gcloud container clusters get-credentials $CLUSTER --region $REGION
+    fi
+  }
+fi
+#------------------------------------------------
+
+#================================================
+# *               Mac Only
+#================================================
+if [ $OSTYPE == 'darwin' ]; then
+  donebeep() {
+    for i in {1..$1}; do
+      osascript -e beep
+    done
+  }
+fi
+#------------------------------------------------

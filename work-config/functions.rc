@@ -72,14 +72,30 @@ installkube() {
 }
 
 getsecret() {
-  local namespace=""
-  while getopts ':su:' arg; do
+  USAGE="getsecret [-n] secret_name
+    -n: Get secret from your namespace instead of composer-user-workloads"
+
+  local namespace="--namespace=composer-user-workloads"
+  while getopts ':nh' arg; do
     case $arg in
-    n) namespace="--namespace $USER" ;;
+    n)
+      namespace="--namespace=$USER"
+      ;;
+    h | *)
+      echo $USAGE
+      return
+      ;;
     esac
   done
-  local readonly secret_name=${1:?"What secret would you like to get?"}
-  local secret_json=$(kube get secrets $secret_name $namespace -o json | jq .data)
+  shift $((OPTIND - 1))
+
+  local readonly secret_name=$1
+  if [ -z "$secret_name" ]; then
+    echo $USAGE
+    return
+  fi
+
+  local secret_json=$(kubectl get secrets $secret_name $namespace -o json | jq .data)
   echo "What key (inside the secret) would you like to get?"
   select secret_key in $(echo "$secret_json" | jq -rc keys | tr -d '[]'); do
     echo "$secret_json" | jq -r ".$secret_key" | base64 --decode
@@ -94,9 +110,10 @@ gns() {
 Allows for easy gcloud config and k8s context switching.
 
   Projects:
-    - de-cc    (Composer V2)
-    - stage-cc (Composer V1)
-    - prod-cc  (Prod Composer V1)
+    - test-cc  (Test Composer V2)
+    - stage-cc (Stage Composer V2)
+    - prod-cc  (Prod Composer V2.5.3)
+    - old-prod-cc  (Prod Composer V2.2.5)
     - stage    (Recharge Stage)
     - infra    (Recharge Infra)
     - prod     (Recharge Prod)"
@@ -104,6 +121,12 @@ Allows for easy gcloud config and k8s context switching.
   fi
 
   case $1 in
+  test-cc | testing-cloudcomposer | tcc)
+    GCP_PROJECT=recharge-stage-services-8e59
+    CLUSTER=us-east4-data-engineering-c-d725ca85-gke
+    REGION=us-east4
+    KUBECTX=gke_recharge-stage-services-8e59_us-east4_us-east4-data-engineering-c-d725ca85-gke
+    ;;
   stage-cc | staging-cloudcomposer | scc)
     GCP_PROJECT=recharge-stage-services-8e59
     CLUSTER=us-east4-data-engineering-c-78114104-gke
@@ -111,6 +134,12 @@ Allows for easy gcloud config and k8s context switching.
     KUBECTX=gke_recharge-stage-services-8e59_us-east4_us-east4-data-engineering-c-78114104-gke
     ;;
   prod-cc | prod-cloudcomposer | pcc)
+    GCP_PROJECT=recharge-prod-services-f818
+    CLUSTER=us-east4-data-engineering-c-79929a8f-gke
+    REGION=us-east4
+    KUBECTX=gke_recharge-prod-services-f818_us-east4_us-east4-data-engineering-c-79929a8f-gke
+    ;;
+  old-prod-cc | old-prod-cloudcomposer | old-pcc)
     GCP_PROJECT=recharge-prod-services-f818
     CLUSTER=us-east4-data-engineering-c-51fa0ed8-gke
     REGION=us-east4

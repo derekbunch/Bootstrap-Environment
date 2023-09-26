@@ -1,0 +1,20 @@
+#================================================
+# *               General
+#================================================
+export FZF_BASE=~/.fzf
+export ZSH_TMUX_UNICODE=true
+export ZSH_TMUX_CONFIG=~/Bootstrap-Environment/work-config/.tmux.conf
+export QMK_HOME=~/.qmk_firmware
+export NVM_DIR="$HOME/.nvm"
+export PYENV_ROOT="$HOME/.pyenv"
+export TOUCHBAR_GIT_ENABLED=true
+export VSCODE=code-insiders
+#------------------------------------------------
+
+#================================================
+# *               Recharge
+#================================================
+export CLOUDSDK_PYTHON=python3
+export VAULT_ADDR="https://vault.infra.rechargeapps.net"
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+#------------------------------------------------
