@@ -1,5 +1,5 @@
 path+=/usr/local/bin/
-path+=/usr/local/bin/code-insiders
+# path+=/usr/local/bin/code-insiders
 path+=$HOME/.local/bin
 
 #================================================
@@ -10,25 +10,26 @@ for version in /usr/local/lib/python*; do
     path+=$version/site-packages
 done
 
-# Add user python site-packages
-for version in ~/Library/Python/*; do
-    path+=$version/lib/python/site-packages
-done
-
-# Setup pyenv
-export PATH+=$PYENV_ROOT/bin
-if type "pyenv" >/dev/null; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-
-    # Setup pyenv dirs
-    path+=$(pyenv root)/bin
-    path+=$(pyenv root)/shims
-
-    for version in $(pyenv root)/versions/*; do
-        path+=$version/bin/
+if [ $OSTYPE = "darwin" ]; then
+    # Add user python site-packages
+    for version in ~/Library/Python/*; do
+        path+=$version/lib/python/site-packages
     done
 fi
+# Setup pyenv
+# export PATH=$PATH:$PYENV_ROOT/bin
+# if type "pyenv" >/dev/null; then
+#     eval "$(pyenv init -)"
+#     eval "$(pyenv virtualenv-init -)"
+
+#     # Setup pyenv dirs
+#     path+=$(pyenv root)/bin
+#     path+=$(pyenv root)/shims
+
+#     for version in $(pyenv root)/versions/*; do
+#         path+=$version/bin/
+#     done
+# fi
 #------------------------------------------------
 
 if type "asdf" >/dev/null; then
@@ -40,7 +41,9 @@ if type "krew" >/dev/null; then
 fi
 
 # Add GOBIN to path
-path+=~/go/bin
+if [ -d "$HOME/go/bin" ]; then
+    path+=~/go/bin
+fi
 
 export PATH
 

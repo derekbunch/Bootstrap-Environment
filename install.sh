@@ -4,12 +4,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   echo -e "\n${Bold}${Yellow}OS is OS X${end}"
   echo -e "\n${Bold}${Green}Installing Homebrew${end}"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  echo -e "\n${Bold}${Green}Installing exa${end}"
-  brew install exa
+  # Archived
+  # echo -e "\n${Bold}${Green}Installing exa${end}"
+  # brew install exa
+  echo -e "\n${Bold}${Green}Installing eza${end}"
+  brew install eza
   echo -e "\n${Bold}${Green}Installing thefuck${end}"
   brew install thefuck
-  echo -e "\n${Bold}${Green}Installing fasd${end}"
-  brew install fasd
+  # Archived
+  # echo -e "\n${Bold}${Green}Installing fasd${end}"
+  # brew install fasd
   echo -e "\n${Bold}${Green}Installing asdf${end}"
   brew install asdf
   echo -e "\n${Bold}${Green}Installing jq${end}"
