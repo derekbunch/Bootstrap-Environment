@@ -34,7 +34,9 @@ autoload -Uz _zi
 for file in $BOOTSTRAP_ENV_PATH/zi_rcs/*.rc; do
   source $file
 done
+source $BOOTSTRAP_ENV_PATH/zi_rcs/annexes.zsh
 for file in $BOOTSTRAP_ENV_PATH/zi_rcs/*.zsh; do
+  [ "$file" = "$BOOTSTRAP_ENV_PATH/zi_rcs/annexes.zsh" ] && continue
   source $file
 done
 

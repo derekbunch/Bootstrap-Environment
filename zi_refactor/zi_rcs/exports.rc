@@ -3,7 +3,7 @@
 #================================================
 export FZF_BASE=~/.fzf
 export ZSH_TMUX_UNICODE=true
-export ZSH_TMUX_CONFIG="$BOOTSTRAP_ENV_PATH/zinit_rcs/.tmux.conf"
+export ZSH_TMUX_CONFIG="$BOOTSTRAP_ENV_PATH/zi_rcs/.tmux.conf"
 export QMK_HOME=~/.qmk_firmware
 export NVM_DIR="$HOME/.nvm"
 # export PYENV_ROOT="$HOME/.pyenv"

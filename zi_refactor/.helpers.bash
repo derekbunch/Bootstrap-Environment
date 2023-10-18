@@ -31,6 +31,9 @@ _get_os_type() {
     ;;
   linux*)
     __log info "OS is Linux"
+    __log debug "Installing apt dependencies"
+    apt update
+    apt install -y software-properties-common apt-transport-https ca-certificates curl gnupg lsb-release build-essential
     ;;
   *)
     __log error "Unsupported OS"

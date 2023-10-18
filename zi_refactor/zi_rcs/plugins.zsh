@@ -1,13 +1,3 @@
-# ? From Zinit Repo Examples
-# Scripts built at install (there's single default make target, "install",
-# and it constructs scripts by `cat'ing a few files). The make'' ice could also be:
-# `make"install PREFIX=$ZPFX"`, if "install" wouldn't be the only default target.
-zi ice lucid \
-  as"program" \
-  pick"$ZPFX/bin/git-*" \
-  make"PREFIX=$ZPFX"
-zi light tj/git-extras
-
 # ? Turbo
 #===========================
 # *      Oh My Zsh
@@ -15,11 +5,11 @@ zi light tj/git-extras
 # Load ohmyzsh plugins
 
 # Completions
-zi lucid ice wait as"completion" for \
+zi silent ice wait as"completion" for \
   OMZP::ripgrep/_ripgrep
 
 # OMZ Lib
-zi lucid wait for \
+zi silent wait for \
   OMZL::bzr.zsh \
   OMZL::cli.zsh \
   OMZL::clipboard.zsh \
@@ -42,7 +32,7 @@ zi lucid wait for \
   OMZL::vcs_info.zsh
 
 # OMZ Plugins
-zi lucid wait atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" for \
+zi silent wait atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" for \
   OMZP::aliases \
   OMZP::asdf \
   OMZP::autojump \
@@ -77,25 +67,10 @@ zi lucid wait atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" for \
 # Mac Only
 if [[ $OSTYPE == *darwin* ]]; then
   zi lucid wait for \
-    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     OMZP::brew \
     OMZP::iterm2 \
     OMZP::macos \
     OMZP::zsh-iterm-touchbar
 fi
 #------------------------------------------------
-
-# * Powerlevel10k
-zi ice lucid wait'!' \
-  nocd \
-  atload'source $BOOTSTRAP_ENV_PATH/.zsh-theme-gruvbox-material-dark; _p9k_precmd'
-# atload"source ~/Bootstrap_Environment/.zsh-theme-gruvbox-material-dark; _p9k_precmd"
-zi light romkatv/powerlevel10k
-
-zi lucid wait for \
-  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-  zdharma-continuum/fast-syntax-highlighting \
-  blockf \
-  zsh-users/zsh-completions \
-  atload"!_zsh_autosuggest_start" \
-  zsh-users/zsh-autosuggestions

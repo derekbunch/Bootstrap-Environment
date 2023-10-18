@@ -21,16 +21,16 @@ openrc() {
   readonly filename=${1:?"Which rc file would you like to open?"}
   rc_file=${filename}'.rc'
   if [ "$2" == 'vim' ]; then
-    vim $BOOTSTRAP_ENV_PATH/zinit_rcs/${rc_file}
+    vim $BOOTSTRAP_ENV_PATH/zi_rcs/${rc_file}
   else
-    code-insiders $BOOTSTRAP_ENV_PATH/zinit_rcs/${rc_file}
+    code-insiders $BOOTSTRAP_ENV_PATH/zi_rcs/${rc_file}
   fi
 }
 
 openrcv() {
   readonly filename=${1:?"Which rc file would you like to open?"}
   rc_file=${filename}'.rc'
-  vim $BOOTSTRAP_ENV_PATH/zinit_rcs/${rc_file}
+  vim $BOOTSTRAP_ENV_PATH/zi_rcs/${rc_file}
 }
 
 squash() {
