@@ -98,8 +98,8 @@ plugins=(
   virtualenv
   z
   zsh-autosuggestions
-  zsh-iterm-touchbar
   zsh-syntax-highlighting
+  # zsh-iterm-touchbar
   #fasd
   # globalias
   # zsh-sync
@@ -117,6 +117,8 @@ elif [ -f $HOME/Bootstrap-Environment/work ]; then
     source $file
   done
 fi
+
+source "$HOME/.rye/env"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -167,10 +169,14 @@ source ~/Bootstrap-Environment/.zsh-theme-gruvbox-material-dark
 
 
 [[ ! -f ~/recharge/dbt/.data_scripts.sh ]] || source "${HOME}"/recharge/dbt/.data_scripts.sh
-[[ ! -f "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autoenv/autoenv.zsh" ]] || source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autoenv/autoenv.zsh"
-[[ ! -f "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autopair/autopair.zsh" ]] || source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autopair/autopair.zsh"
 
+[[ -f "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autoenv/autoenv.zsh" ]] || git clone https://github.com/Tarrasch/zsh-autoenv "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autoenv"
+source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autoenv/autoenv.zsh"
+
+[[ -f "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autopair/autopair.zsh" ]] || git clone https://github.com/hlissner/zsh-autopair "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autopair"
+source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autopair/autopair.zsh"
 autopair-init
+
 updatels
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
