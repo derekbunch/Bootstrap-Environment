@@ -1,4 +1,4 @@
-# pyenv/pyenv
+# pyenv/pyenv - still not working
 zi ice \
   atclone'PYENV_ROOT="$PWD" ./libexec/pyenv init - > zpyenv.zsh; PYENV_ROOT="$(pyenv root)" ./bin/pyenv-virtualenv-init - > zpyenv-virtualenv.zsh' \
   atinit'export PYENV_ROOT="$PWD"' \
@@ -10,22 +10,20 @@ zi ice \
   pick'bin/pyenv' load pyenv/pyenv \
   pick"bin/pyenv-virtualenv" load pyenv/pyenv-virtualenv
 
-# https://wiki.zshell.dev/docs/guides/syntax/standard#direnv
-zi as"program" \
-  from"gh-r" \
-  mv"direnv* -> direnv" \
-  atclone'./direnv hook zsh > zhook.zsh' \
-  atpull'%atclone' \
-  pick"direnv" \
-  src="zhook.zsh" \
-  for \
-  direnv/direnv
+# https://wiki.zshell.dev/docs/guides/syntax/standard#direnv - not working, needs go
+# zi as"program" \
+#   make'!' \
+#   atclone'./direnv hook zsh > zhook.zsh' \
+#   atpull'%atclone' \
+#   src="zhook.zsh" \
+#   for \
+#   direnv/direnv
 
 # Highlighter
 zi ice pick"h.sh"
 zi load paoloantinori/hhighlighter
 
-# # FD
+# # FD - Included in annexes.zsh, this is just for reference incase of future changes
 # [ $(uname -s) = "Darwin" ] && FD_BPICK="*darwin.tar.gz" || FD_BPICK="*$(uname -m)-unknown-linux-gnu.tar.gz"
 # # old_value bpick="*amd64.deb" \
 # zi ice \
@@ -43,12 +41,12 @@ fi
 
 # ? Turbo
 # BAT-EXTRAS
-zi ice lucid wait"1" as"program" pick"src/batgrep.sh"
-zi ice lucid wait"1" as"program" pick"src/batdiff.sh"
+zi ice wait"1" as"program" pick"src/batgrep.sh"
+zi ice wait"1" as"program" pick"src/batdiff.sh"
 zi load eth-p/bat-extras
 
 # hlissner/zsh-autopair
-zi ice lucid wait"1"
+zi ice wait"1"
 zi load hlissner/zsh-autopair
 
 # NEOVIM
@@ -62,7 +60,7 @@ zi ice \
 zi load neovim/neovim
 
 # LAZYDOCKER
-zi ice lucid wait"1" \
+zi ice wait"1" \
   as"program" \
   from"gh-r" \
   bpick"*$(uname -s)_x86_64*" \

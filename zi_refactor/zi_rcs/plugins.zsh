@@ -31,6 +31,11 @@ zi silent wait for \
   OMZL::theme-and-appearance.zsh \
   OMZL::vcs_info.zsh
 
+# OMZ Subdirs
+zi silent wait svn for \
+  OMZP::aliases \
+  OMZ::lib
+
 # OMZ Plugins
 zi silent wait atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" for \
   OMZP::aliases \

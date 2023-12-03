@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+_BOOTSTRAP_ENV_CACHE_FILE=~/.cache/bootstrap_env_cache
 __log() {
   local log_type=$1
   shift
@@ -32,8 +33,8 @@ _get_os_type() {
   linux*)
     __log info "OS is Linux"
     __log debug "Installing apt dependencies"
-    apt update
-    apt install -y software-properties-common apt-transport-https ca-certificates curl gnupg lsb-release build-essential
+    apt update &>/dev/null
+    apt install -y software-properties-common apt-transport-https ca-certificates curl gnupg lsb-release build-essential &>/dev/null
     ;;
   *)
     __log error "Unsupported OS"
@@ -42,14 +43,38 @@ _get_os_type() {
   esac
 }
 
+_os_aware_operation() {
+  local operation=$1
+  local package=$2
+  local cmd=$3
+  if [ -z $SHOW_CMD_OUTPUT ]; then
+    output_pipe="/dev/null"
+  else
+    output_pipe="/dev/tty"
+  fi
+
+  case "$OSTYPE" in
+  darwin* | linux*)
+    if [ "$operation" = "install" ]; then
+      command -v $package &>/dev/null || (__log debug "Installing $package" && $cmd $package &>$output_pipe)
+    elif [ "$operation" = "uninstall" ]; then
+      command -v $package &>/dev/null && (__log debug "Uninstalling $package" && $cmd $package &>$output_pipe)
+    fi
+    ;;
+  *)
+    __log error "Unknown OS"
+    exit 1
+    ;;
+  esac
+}
+
 _os_aware_install() {
   case "$OSTYPE" in
   darwin*)
-    command -v $1 &>/dev/null || (__log debug "Installing $1" && brew install $1)
+    _os_aware_operation "install" $1 "brew install"
     ;;
   linux*)
-    # command -v $1 &>/dev/null || (__log debug "Installing $1" && sudo apt install -y $1)
-    command -v $1 &>/dev/null || (__log debug "Installing $1" && apt install -y $1)
+    _os_aware_operation "install" $1 "apt install -y"
     ;;
   *)
     __log error "Unknown OS"
@@ -61,11 +86,10 @@ _os_aware_install() {
 _os_aware_uninstall() {
   case "$OSTYPE" in
   darwin*)
-    command -v $1 &>/dev/null && (__log debug "Uninstalling $1" && brew uninstall $1)
+    _os_aware_operation "uninstall" $1 "brew uninstall"
     ;;
   linux*)
-    # command -v $1 &>/dev/null && (__log debug "Uninstalling $1" && sudo apt remove -y $1)
-    command -v $1 &>/dev/null && (__log debug "Uninstalling $1" && apt remove -y $1)
+    _os_aware_operation "uninstall" $1 "apt remove -y"
     ;;
   *)
     __log error "Unknown OS"
@@ -120,4 +144,49 @@ _uninstall_rtx() {
     sudo apt remove -y rtx
     ;;
   esac
+}
+
+_create_cache_if_not_exists() {
+  mkdir -p ~/.cache
+  [[ -f $_BOOTSTRAP_ENV_CACHE_FILE ]] || touch $_BOOTSTRAP_ENV_CACHE_FILE
+}
+
+_load_cache() {
+  _create_cache_if_not_exists
+  while IFS= read -r line; do
+    line=$(echo "$line" | sed 's/^export //')
+    __log debug "Loading cached $line"
+    typeset -gx "$line"
+  done <"$_BOOTSTRAP_ENV_CACHE_FILE"
+}
+
+_cache_var() {
+  local var_name=$1
+  local var_value=$2
+  _create_cache_if_not_exists
+
+  if grep -q "^export $var_name=" "$_BOOTSTRAP_ENV_CACHE_FILE"; then
+    local cached_value=$(grep "^export $var_name=" "$_BOOTSTRAP_ENV_CACHE_FILE" | cut -d'=' -f2-)
+    if [ "$cached_value" != "$var_value" ]; then
+      __log debug "Updating cached $var_name=$var_value"
+      sed -i "s|^export $var_name=.*|export $var_name=$var_value|" "$_BOOTSTRAP_ENV_CACHE_FILE"
+    fi
+  else
+    __log debug "Caching $var_name=$var_value"
+    echo "export $var_name=$var_value" >>"$_BOOTSTRAP_ENV_CACHE_FILE"
+  fi
+}
+
+_load_var_from_cache() {
+  local var_name=$1
+  local default_value=$2
+  _create_cache_if_not_exists
+
+  if grep -q "^export $var_name=" "$_BOOTSTRAP_ENV_CACHE_FILE"; then
+    local cached_value=$(grep "^export $var_name=" "$_BOOTSTRAP_ENV_CACHE_FILE" | cut -d'=' -f2-)
+    echo "$cached_value"
+  else
+    _cache_var $var_name $default_value
+    echo "$default_value"
+  fi
 }

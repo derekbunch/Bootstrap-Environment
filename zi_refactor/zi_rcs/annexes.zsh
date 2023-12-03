@@ -11,8 +11,8 @@ zi light-mode for \
   @zsh-users+fast \
   skip'tig' @ext-git
 
-# rust-lang/rustup
-# Installation of Rust compiler environment via the z-a-rust annex
+# # rust-lang/rustup
+# # Installation of Rust compiler environment via the z-a-rust annex
 zi lucid wait'1' rustup \
   id-as'rust' \
   as'null' \
@@ -23,20 +23,26 @@ zi lucid wait'1' rustup \
   z-shell/0
 
 # # RIPGREP
+# This doesnt work because the shim tries to call ripgrep, which doesnt exist (rg)
+# zi ice rustup \
+#   id-as'ripgrep' \
+#   cargo'!ripgrep -> rg'
+# zi load z-shell/0
 zi ice rustup \
   id-as'ripgrep' \
-  cargo"!ripgrep -> rg"
-zi load null
+  cargo'!ripgrep' \
+  as'command' \
+  pick"bin/rg"
+zi load z-shell/0
 
-# eza
+# # eza
 zi ice rustup \
   id-as'eza' \
-  cargo"!eza"
-zi load null
+  cargo'!eza'
+zi load z-shell/0
 # atload"[[ ! -f ${ZI[COMPLETIONS_DIR]}/_eza ]] && zi creinstall eza"
 
-#	marlonrichert/zsh-autocomplete
-# z-shell/zzcomplete
-zi lucid wait'1' for \
-  autocomplete \
-  zzcomplete
+# #	marlonrichert/zsh-autocomplete
+# # z-shell/zzcomplete
+zi wait'1' for \
+  zzcomplete #autocomplete

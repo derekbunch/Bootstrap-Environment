@@ -32,7 +32,7 @@ alias man="batman.sh"
 #================================================
 # *               Eza
 #================================================
-if type "eza" >/dev/null; then
+if [ -d "$ZPFX"/eza/bin ]; then
     alias ls="eza --group-directories-first"
     alias l="ls -1"
     alias la="l -a"
@@ -43,14 +43,14 @@ if type "eza" >/dev/null; then
     alias llt="ll -T"
     alias dirsize='du -sh * | sort -nr'
     alias lsize='eza --group-directories-first -alh -s=size'
-    alias updatels='alias ls="eza --group-directories-first"
-                    alias l="ls -1"
-                    alias la="l -a"
-                    alias ll="ls -lh --git"
-                    alias llg="ll --grid"
-                    alias lt="ls -T"
-                    alias llt="ll -T"'
 fi
+alias updatels='alias ls="eza --group-directories-first"
+                alias l="ls -1"
+                alias la="l -a"
+                alias ll="ls -lh --git"
+                alias llg="ll --grid"
+                alias lt="ls -T"
+                alias llt="ll -T"'
 #------------------------------------------------
 
 #================================================
