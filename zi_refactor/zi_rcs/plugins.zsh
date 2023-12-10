@@ -79,3 +79,12 @@ if [[ $OSTYPE == *darwin* ]]; then
     OMZP::zsh-iterm-touchbar
 fi
 #------------------------------------------------
+
+# Homebrew Completions
+zi has'brew' id-as'brew-completions' wait as'completion' lucid \
+  atclone='print Installing Brew completions...; mkdir -p $ZPFX/brew_stuff; \
+   command cp -f $(brew --prefix)/share/zsh/site-functions/^_* $ZPFX/brew_stuff; \
+zi creinstall -q $(brew --prefix)/share/zsh/site-functions' \
+  atload='fpath=( ${(u)fpath[@]:#$(brew --prefix)/share/zsh*} ); fpath+=( $ZPFX/brew_stuff )' \
+  atpull="%atclone" run-atpull for \
+  z-shell/null

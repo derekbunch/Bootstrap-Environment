@@ -32,27 +32,17 @@ source "${ZI[BIN_DIR]}/zi.zsh"
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 
-for file in $BOOTSTRAP_ENV_PATH/zi_rcs/*.rc; do
-  # [ "$file" = $BOOTSTRAP_ENV_PATH/zi_rcs/aliases.rc ] && continue
-  source $file
-done
-# source $BOOTSTRAP_ENV_PATH/zi_rcs/annexes.zsh
+source $BOOTSTRAP_ENV_PATH/zi_rcs/annexes.zsh
 # source $BOOTSTRAP_ENV_PATH/zi_rcs/tools.zsh
 # source $BOOTSTRAP_ENV_PATH/zi_rcs/plugins.zsh
-# for file in $BOOTSTRAP_ENV_PATH/zi_rcs/*.zsh; do
-#   [ "$file" = "$BOOTSTRAP_ENV_PATH/zi_rcs/annexes.zsh" ] && continue
-#   source $file
-# done
-
+for file in $BOOTSTRAP_ENV_PATH/zi_rcs/*.zsh; do
+  [ "$file" = "$BOOTSTRAP_ENV_PATH/zi_rcs/annexes.zsh" ] && continue
+  source $file
+done
 for file in $BOOTSTRAP_ENV_PATH/zi_rcs/*.rc; do
   # [ "$file" = $BOOTSTRAP_ENV_PATH/zi_rcs/aliases.rc ] && continue
   source $file
 done
 
-# source $BOOTSTRAP_ENV_PATH/zi_rcs/aliases.rc
-updatels
 
-
-
-# exec zsh -il
-# zi self-update
+zi self-update

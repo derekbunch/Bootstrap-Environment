@@ -1,14 +1,17 @@
 # pyenv/pyenv - still not working
-zi ice \
-  atclone'PYENV_ROOT="$PWD" ./libexec/pyenv init - > zpyenv.zsh; PYENV_ROOT="$(pyenv root)" ./bin/pyenv-virtualenv-init - > zpyenv-virtualenv.zsh' \
-  atinit'export PYENV_ROOT="$PWD"' \
-  atpull"%atclone" \
-  as'command' \
-  multisrc"{zpyenv|zpyenv-virtualenv.zsh}.zsh" \
-  nocompile'!' \
-  for \
-  pick'bin/pyenv' load pyenv/pyenv \
-  pick"bin/pyenv-virtualenv" load pyenv/pyenv-virtualenv
+# zi ice \
+#   atclone'PYENV_ROOT="$PWD" ./libexec/pyenv init - > zpyenv.zsh; PYENV_ROOT="$(pyenv root)" ./bin/pyenv-virtualenv-init - > zpyenv-virtualenv.zsh' \
+#   atinit'export PYENV_ROOT="$PWD"' \
+#   atpull"%atclone" \
+#   as'command' \
+#   multisrc"{zpyenv|zpyenv-virtualenv.zsh}.zsh" \
+#   nocompile'!' \
+#   for \
+#   pick'bin/pyenv' load pyenv/pyenv \
+#   pick"bin/pyenv-virtualenv" load pyenv/pyenv-virtualenv
+
+zi pack for pyenv
+zi run pyenv/pyenv 'git clone https://github.com/pyenv/pyenv-virtualenv.git ./plugins/pyenv-virtualenv'
 
 # https://wiki.zshell.dev/docs/guides/syntax/standard#direnv - not working, needs go
 # zi as"program" \
@@ -34,10 +37,10 @@ zi load paoloantinori/hhighlighter
 # zi light sharkdp/fd
 
 # GOOGLE-CLOUD-SDK COMPLETION
-if [[ -f /opt/google-cloud-sdk/completion.zsh.inc ]]; then
-  zi ice as"completion"
-  zi snippet /opt/google-cloud-sdk/completion.zsh.inc
-fi
+zi ice if"[[ -f /opt/google-cloud-sdk/completion.zsh.inc ]]" \
+  as"completion" \
+  wait"1"
+zi snippet /opt/google-cloud-sdk/completion.zsh.inc
 
 # ? Turbo
 # BAT-EXTRAS

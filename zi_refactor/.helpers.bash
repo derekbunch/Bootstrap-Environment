@@ -33,8 +33,8 @@ _get_os_type() {
   linux*)
     __log info "OS is Linux"
     __log debug "Installing apt dependencies"
-    apt update &>/dev/null
-    apt install -y software-properties-common apt-transport-https ca-certificates curl gnupg lsb-release build-essential &>/dev/null
+    sudo apt update &>/dev/null
+    sudo apt install -y software-properties-common apt-transport-https ca-certificates curl gnupg lsb-release build-essential &>/dev/null
     ;;
   *)
     __log error "Unsupported OS"
@@ -56,9 +56,9 @@ _os_aware_operation() {
   case "$OSTYPE" in
   darwin* | linux*)
     if [ "$operation" = "install" ]; then
-      command -v $package &>/dev/null || (__log debug "Installing $package" && $cmd $package &>$output_pipe)
+      command -v $package &>/dev/null || (__log debug "Installing $package" && $cmd $package >$output_pipe)
     elif [ "$operation" = "uninstall" ]; then
-      command -v $package &>/dev/null && (__log debug "Uninstalling $package" && $cmd $package &>$output_pipe)
+      command -v $package &>/dev/null && (__log debug "Uninstalling $package" && $cmd $package >$output_pipe)
     fi
     ;;
   *)
@@ -74,7 +74,7 @@ _os_aware_install() {
     _os_aware_operation "install" $1 "brew install"
     ;;
   linux*)
-    _os_aware_operation "install" $1 "apt install -y"
+    _os_aware_operation "install" $1 "sudo apt install -y"
     ;;
   *)
     __log error "Unknown OS"
@@ -89,7 +89,7 @@ _os_aware_uninstall() {
     _os_aware_operation "uninstall" $1 "brew uninstall"
     ;;
   linux*)
-    _os_aware_operation "uninstall" $1 "apt remove -y"
+    _os_aware_operation "uninstall" $1 "sudo apt remove -y"
     ;;
   *)
     __log error "Unknown OS"

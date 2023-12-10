@@ -1,6 +1,7 @@
 #================================================
 # *               General
 #================================================
+export TERM=xterm-256color
 export FZF_BASE=~/.fzf
 export ZSH_TMUX_UNICODE=true
 export ZSH_TMUX_CONFIG="$BOOTSTRAP_ENV_PATH/zi_rcs/.tmux.conf"

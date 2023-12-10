@@ -32,7 +32,7 @@ alias man="batman.sh"
 #================================================
 # *               Eza
 #================================================
-if [ -d "$ZPFX"/eza/bin ]; then
+if [ -f "$ZPFX"/bin/eza ]; then
     alias ls="eza --group-directories-first"
     alias l="ls -1"
     alias la="l -a"

@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
-source .termcolors.sh .helpers.bash
+typeset -gx _BOOTSTRAP_ENV_PATH=$(dirname "$(readlink -f "$0")")
+typeset -gx SHOW_CMD_OUTPUT=true
+source $_BOOTSTRAP_ENV_PATH/.termcolors.sh
+source $_BOOTSTRAP_ENV_PATH/.helpers.bash
+_cache_var BOOTSTRAP_ENV_PATH $_BOOTSTRAP_ENV_PATH
+_load_cache
 
 export ZI_HOME_DIR="${HOME}/.zi"
-_log info "Uninstalling Zi"
+__log info "Uninstalling Zi"
 rm -rf $ZI_HOME_DIR
 
 _os_aware_uninstall git
@@ -17,9 +22,9 @@ _os_aware_uninstall bsdmainutils
 _uninstall_rtx
 
 if ! _is_hardlinked ~/.zshrc "$BOOTSTRAP_ENV_PATH/.zshrc"; then
-  _log attention "Restoring.zshrc.orig"
-  unlink ~/.zshrc
-  mv ~/.zshrc.orig ~/.zshrc
+  __log attention "Restoring.zshrc.orig"
+  unlink ~/.zshrc 2>/dev/null
+  mv ~/.zshrc.orig ~/.zshrc 2>/dev/null
 fi
 
-source ~/.zshrc
+exec bash

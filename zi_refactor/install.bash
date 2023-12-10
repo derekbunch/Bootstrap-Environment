@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 typeset -gx _BOOTSTRAP_ENV_PATH=$(dirname "$(readlink -f "$0")")
-cat ~/.cache/bootstrap_env_cache
+# typeset -gx SHOW_CMD_OUTPUT=true
+# cat ~/.cache/bootstrap_env_cache
 source $_BOOTSTRAP_ENV_PATH/.termcolors.sh
 source $_BOOTSTRAP_ENV_PATH/.helpers.bash
 _cache_var BOOTSTRAP_ENV_PATH $_BOOTSTRAP_ENV_PATH
@@ -16,6 +17,7 @@ _os_aware_install jq
 _os_aware_install tmux
 _os_aware_install file
 _os_aware_install bsdmainutils
+_os_aware_install subversion
 _install_rtx
 
 if ! _is_hardlinked ~/.zshrc "$BOOTSTRAP_ENV_PATH/.zshrc"; then
