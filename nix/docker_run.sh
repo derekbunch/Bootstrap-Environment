@@ -1,0 +1,1 @@
+docker run -v $(pwd):/personal -v /var/run/docker.sock:/var/run/docker.sock -it --rm nixos/nix
